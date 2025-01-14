@@ -37,10 +37,10 @@ generic(
     -- gtp to kria
     gtp_refclk1_p           : in std_logic;
     gtp_refclk1_n           : in std_logic;
-    --gtp_tx0_p               : out std_logic;
-    --gtp_tx0_n               : out std_logic;
-    --gtp_rx0_p               : in std_logic;
-    --gtp_rx0_n               : in std_logic;
+    gtp_tx0_p               : out std_logic;
+    gtp_tx0_n               : out std_logic;
+    gtp_rx0_p               : in std_logic;
+    gtp_rx0_n               : in std_logic;
  
     --test pulse signals    
     tp_pulse                : out std_logic_vector(7 downto 0);
@@ -196,257 +196,257 @@ keylock_detect_led <= not acis_keylock_debounced;
 
 
 --generate power-on reset pulse
---gen_rst: entity work.pwronreset
---generic map (
---    SIM_MODE => SIM_MODE
---  )
---  port map(
---    clk => adc_clk, 
---    fault_no_clock => fault_no_clock,
---    reset => reset
---  );    
+gen_rst: entity work.pwronreset
+generic map (
+    SIM_MODE => SIM_MODE
+  )
+  port map(
+    clk => adc_clk, 
+    fault_no_clock => fault_no_clock,
+    reset => reset
+  );    
   
   
---debounce_acis_reset: entity work.debounce
---  port map (
---    clk => adc_clk,
---    reset => reset,
---    button => acis_reset,
---    result => acis_reset_debounced
---);
+debounce_acis_reset: entity work.debounce
+  port map (
+    clk => adc_clk,
+    reset => reset,
+    button => acis_reset,
+    result => acis_reset_debounced
+);
   
---debounce_acis_force_trip: entity work.debounce
---  port map (
---    clk => adc_clk,
---    reset => reset,
---    button => acis_force_trip,
---    result => acis_force_trip_debounced
---);  
+debounce_acis_force_trip: entity work.debounce
+  port map (
+    clk => adc_clk,
+    reset => reset,
+    button => acis_force_trip,
+    result => acis_force_trip_debounced
+);  
   
---debounce_acis_keylock: entity work.debounce
---  port map (
---    clk => adc_clk,
---    reset => reset,
---    button => acis_keylock,
---    result => acis_keylock_debounced
---);    
+debounce_acis_keylock: entity work.debounce
+  port map (
+    clk => adc_clk,
+    reset => reset,
+    button => acis_keylock,
+    result => acis_keylock_debounced
+);    
   
 
---timing: entity work.gen_timing_events
---  port map(
---    clk => adc_clk,
---    reset => reset,
---    eeprom_rdy => eeprom_rdy,
---    soft_trig => soft_trig,
---    fiber_trig_in => fiber_trig_in,
---    eeprom_params => eeprom_params, 
---    pzed_params => pzed_params,
---    acis_keylock => acis_keylock_debounced,    
---    trig_out => trig,
---    accum_update => accum_update,
---    beam_detect_window => beam_detect_window,
---    beam_cycle_window => beam_cycle_window,
---    adc_samplenum => adc_samplenum,
---    tp_pulse => tp_pulse,
---    tp_gates => tp_gates,
---    fiber_trig_fp => open, --fiber_trig_fp,
---    timestamp => timestamp,
---    watchdog_clock => watchdog_clock,
---    watchdog_pulse => watchdog_pulse,
---    startup_cnt => startup_cnt, 
---    fault_startup => fault_startup   
+timing: entity work.gen_timing_events
+  port map(
+    clk => adc_clk,
+    reset => reset,
+    eeprom_rdy => eeprom_rdy,
+    soft_trig => soft_trig,
+    fiber_trig_in => '0', --fiber_trig_in,
+    eeprom_params => eeprom_params, 
+    pzed_params => pzed_params,
+    acis_keylock => acis_keylock_debounced,    
+    trig_out => trig,
+    accum_update => accum_update,
+    beam_detect_window => beam_detect_window,
+    beam_cycle_window => beam_cycle_window,
+    adc_samplenum => adc_samplenum,
+    tp_pulse => tp_pulse,
+    tp_gates => tp_gates,
+    fiber_trig_fp => open, --fiber_trig_fp,
+    timestamp => timestamp,
+    watchdog_clock => watchdog_clock,
+    watchdog_pulse => watchdog_pulse,
+    startup_cnt => startup_cnt, 
+    fault_startup => fault_startup   
     
--- );
+ );
 
 
 
----- generate fault conditions
---gen_faults: entity work.faults
---  port map (
---    clk => adc_clk,
---    reset => reset,
---    beam_cycle_window => beam_cycle_window,
---    trig => trig,
---    params => eeprom_params, --pzed_params,
---    pulse_stats => pulse_stats,
---    accum => accum, 
---    fault_startup => fault_startup,   
---    fault_bad_power => fault_bad_power,
---    fault_no_clock => fault_no_clock, 
---    fault_no_pulse => fault_no_pulse, 
---    fault_no_trigger => fault_no_trigger,
---    acis_faultn => acis_faultn,
---    acis_fault_rdbk => acis_fault_rdbk,
---    acis_reset => acis_reset_debounced, 
---    acis_force_trip => acis_force_trip_debounced,
---    acis_keylock => acis_keylock_debounced,       
---    acis_readbacks => acis_readbacks,
---    adc_sat => adc_sat,
---    faultsn => faultsn,
---    faults_rdbk => faults_rdbk,
---    watchdog_pulse => open, --watchdog_pulse,
---    beam_pulse_detect => beam_pulse_detect
---);
+-- generate fault conditions
+gen_faults: entity work.faults
+  port map (
+    clk => adc_clk,
+    reset => reset,
+    beam_cycle_window => beam_cycle_window,
+    trig => trig,
+    params => eeprom_params, --pzed_params,
+    pulse_stats => pulse_stats,
+    accum => accum, 
+    fault_startup => fault_startup,   
+    fault_bad_power => fault_bad_power,
+    fault_no_clock => fault_no_clock, 
+    fault_no_pulse => fault_no_pulse, 
+    fault_no_trigger => fault_no_trigger,
+    acis_faultn => acis_faultn,
+    acis_fault_rdbk => acis_fault_rdbk,
+    acis_reset => acis_reset_debounced, 
+    acis_force_trip => acis_force_trip_debounced,
+    acis_keylock => acis_keylock_debounced,       
+    acis_readbacks => acis_readbacks,
+    adc_sat => adc_sat,
+    faultsn => faultsn,
+    faults_rdbk => faults_rdbk,
+    watchdog_pulse => open, --watchdog_pulse,
+    beam_pulse_detect => beam_pulse_detect
+);
 
 
-----configures and reads ADC
---adc : entity work.adc_interface
---  generic map (
---    SIM_MODE => SIM_MODE
---  )
---  port map (
---    reset => reset,
---    sclk => adc_spi_sck,                    
---    din => adc_spi_sdi, 
---    dout => adc_spi_sdo, 
---    sync => adc_spi_cs,     
---    adc_clk_p => adc_clk_p,
---    adc_clk_n => adc_clk_n,
---    adc_data_p => adc_data_p,
---    adc_data_n => adc_data_n,
---    adc_of_p => adc_of_p,
---    adc_of_n => adc_of_n,
---    adc_data_2s => adc_data,
---    adc_data_ob => dac_data,
---    adc_clk => adc_clk,
---    adc_sat => adc_sat
---  );
-
-
-
-
----- calculates all metrics on beam and test pulses
---calc_q: entity work.calc_charge
---  port map (
---   clk => adc_clk,
---   trig => trig,
---   adc_samplenum => adc_samplenum,
---   test_pulse_gates => tp_gates, 
---   params => eeprom_params,              
---   adc_data_raw => adc_data, 
---   adc_data_inv_dly => adc_data_dly, 
---   pulse_stats => pulse_stats  
---  );    
-
-
----- 15 min charge accumulator
---boxcar: entity work.accumulator
---  port map(
---    clk => adc_clk, 
---    rst => pzed_params.accum_reset, 
---    faultn => acis_faultn,
---    accum_len => eeprom_params.accum_length(12 downto 0),
---    beam_detect_window => beam_detect_window, 
---    accum_update => accum_update,
---    q_min => eeprom_params.accum_q_min,
---    sample => pulse_stats(0).integral,
---    charge_oow => charge_oow,
---    accum => accum
---);
-
-
-
----- backend zuDFE to artix slow control SPI interface
---spi_comm: entity work.rx_kria_data
---  port map(
---    clk => adc_clk, 
---    gtp_rx_clk => gtp_rx_clk, 
---    rst => reset,    
---    acis_keylock => acis_keylock_debounced,             
---    gtp_rx_data => gtp_rx_data,
---    soft_trig => soft_trig,
---    params => pzed_params              
--- );    
-
-
-
-----artix to backend zuDFE data 
---send_results: entity work.tx_kria_data
---  generic map (
---    FPGA_VERSION => FPGA_VERSION
---  )
---  port map (
---    clk => adc_clk, 
---    reset => reset, 
---    trig => trig, 
---    startup_cnt => startup_cnt,
---    acis_readbacks => acis_readbacks,
---    beam_cycle_window => beam_cycle_window,
---    adc_data => adc_data, 
---    adc_data_dly => adc_data_dly,
---    pulse_stats => pulse_stats,
---    eeprom_params => eeprom_params, 
---    faults_rdbk => faults_rdbk,
---    faults_lat => faults_lat, 
---    timestamp => timestamp,
---    accum => accum,
---    charge_oow => charge_oow,
---    tx_data => gtp_tx_data,
---    tx_data_enb => gtp_tx_data_enb            
--- );    
-
-
----- GTP transceiver for fiber communication
---backend_gtp: entity work.backend_comm_wrapper
---  port map(
---    clk => adc_clk,
---    reset => reset, 
---    gtp_refclk_n => gtp_refclk1_n,
---    gtp_refclk_p => gtp_refclk1_p,
---    q0_clk0_refclk_out => gtp_refclk,
---    gtp_tx_data => gtp_tx_data,
---    gtp_tx_data_enb => gtp_tx_data_enb,
---    gtp_rx_clk => gtp_rx_clk,
---    gtp_rx_data => gtp_rx_data,
---    gtp_tx_clk => gtp_tx_clk,
---    RXN_IN  => gtp_rx0_n, 
---    RXP_IN => gtp_rx0_p, 
---    TXN_OUT => gtp_tx0_n, 
---    TXP_OUT => gtp_tx0_p
---);
-
-
-
----- non-volatile memory for settings
---eeprom: entity work.eeprom_interface
---  generic map (
---    SIM_MODE => SIM_MODE
---  )
---  port map(
---    clk => adc_clk,                   
---    reset => reset,  
---    pzed_params => pzed_params,                            
---    eeprom_params => eeprom_params,
---    acis_keylock => acis_keylock_debounced,
---    sclk => eeprom_sck,                    
---    din => eeprom_sdi, 
---    dout => eeprom_sdo,
---    csn => eeprom_csn, 
---    holdn => eeprom_holdn,
---    eeprom_rdy => eeprom_rdy                 
---);    
+--configures and reads ADC
+adc : entity work.adc_interface
+  generic map (
+    SIM_MODE => SIM_MODE
+  )
+  port map (
+    reset => reset,
+    sclk => adc_spi_sck,                    
+    din => adc_spi_sdi, 
+    dout => adc_spi_sdo, 
+    sync => adc_spi_cs,     
+    adc_clk_p => adc_clk_p,
+    adc_clk_n => adc_clk_n,
+    adc_data_p => adc_data_p,
+    adc_data_n => adc_data_n,
+    adc_of_p => adc_of_p,
+    adc_of_n => adc_of_n,
+    adc_data_2s => adc_data,
+    adc_data_ob => dac_data,
+    adc_clk => adc_clk,
+    adc_sat => adc_sat
+  );
 
 
 
 
+-- calculates all metrics on beam and test pulses
+calc_q: entity work.calc_charge
+  port map (
+   clk => adc_clk,
+   trig => trig,
+   adc_samplenum => adc_samplenum,
+   test_pulse_gates => tp_gates, 
+   params => eeprom_params,              
+   adc_data_raw => adc_data, 
+   adc_data_inv_dly => adc_data_dly, 
+   pulse_stats => pulse_stats  
+  );    
 
---stretch_0 : entity work.stretch
---  port map (
---	clk => adc_clk,
---	reset => '0', 
---	sig_in => spi_xfer,  
---	len => 4000000, -- ~25ms;
---	sig_out => spi_xfer_stretch  
---);	  	
 
---stretch_1 : entity work.stretch
---  port map (
---	clk => adc_clk,
---	reset => '0', 
---	sig_in => trig,  
---	len => 4000000, -- ~25ms;
---	sig_out => trig_stretch  
---);	  	
+-- 15 min charge accumulator
+boxcar: entity work.accumulator
+  port map(
+    clk => adc_clk, 
+    rst => pzed_params.accum_reset, 
+    faultn => acis_faultn,
+    accum_len => eeprom_params.accum_length(12 downto 0),
+    beam_detect_window => beam_detect_window, 
+    accum_update => accum_update,
+    q_min => eeprom_params.accum_q_min,
+    sample => pulse_stats(0).integral,
+    charge_oow => charge_oow,
+    accum => accum
+);
+
+
+
+-- backend zuDFE to artix slow control SPI interface
+spi_comm: entity work.rx_backend_data
+  port map(
+    clk => adc_clk, 
+    gtp_rx_clk => gtp_rx_clk, 
+    rst => reset,    
+    acis_keylock => acis_keylock_debounced,             
+    gtp_rx_data => gtp_rx_data,
+    soft_trig => soft_trig,
+    params => pzed_params              
+ );    
+
+
+
+--artix to backend zuDFE data 
+send_results: entity work.tx_backend_data
+  generic map (
+    FPGA_VERSION => FPGA_VERSION
+  )
+  port map (
+    clk => adc_clk, 
+    reset => reset, 
+    trig => trig, 
+    startup_cnt => startup_cnt,
+    acis_readbacks => acis_readbacks,
+    beam_cycle_window => beam_cycle_window,
+    adc_data => adc_data, 
+    adc_data_dly => adc_data_dly,
+    pulse_stats => pulse_stats,
+    eeprom_params => eeprom_params, 
+    faults_rdbk => faults_rdbk,
+    faults_lat => faults_lat, 
+    timestamp => timestamp,
+    accum => accum,
+    charge_oow => charge_oow,
+    tx_data => gtp_tx_data,
+    tx_data_enb => gtp_tx_data_enb            
+ );    
+
+
+-- GTP transceiver for fiber communication
+backend_gtp: entity work.kria_comm_wrapper
+  port map(
+    clk => adc_clk,
+    reset => reset, 
+    gtp_refclk_n => gtp_refclk1_n,
+    gtp_refclk_p => gtp_refclk1_p,
+    q0_clk0_refclk_out => gtp_refclk,
+    gtp_tx_data => gtp_tx_data,
+    gtp_tx_data_enb => gtp_tx_data_enb,
+    gtp_rx_clk => gtp_rx_clk,
+    gtp_rx_data => gtp_rx_data,
+    --gtp_tx_clk => gtp_tx_clk,
+    RXN_IN  => gtp_rx0_n, 
+    RXP_IN => gtp_rx0_p, 
+    TXN_OUT => gtp_tx0_n, 
+    TXP_OUT => gtp_tx0_p
+);
+
+
+
+-- non-volatile memory for settings
+eeprom: entity work.eeprom_interface
+  generic map (
+    SIM_MODE => SIM_MODE
+  )
+  port map(
+    clk => adc_clk,                   
+    reset => reset,  
+    pzed_params => pzed_params,                            
+    eeprom_params => eeprom_params,
+    acis_keylock => acis_keylock_debounced,
+    sclk => eeprom_sck,                    
+    din => eeprom_sdi, 
+    dout => eeprom_sdo,
+    csn => eeprom_csn, 
+    holdn => eeprom_holdn,
+    eeprom_rdy => eeprom_rdy                 
+);    
+
+
+
+
+
+stretch_0 : entity work.stretch
+  port map (
+	clk => adc_clk,
+	reset => '0', 
+	sig_in => spi_xfer,  
+	len => 4000000, -- ~25ms;
+	sig_out => spi_xfer_stretch  
+);	  	
+
+stretch_1 : entity work.stretch
+  port map (
+	clk => adc_clk,
+	reset => '0', 
+	sig_in => trig,  
+	len => 4000000, -- ~25ms;
+	sig_out => trig_stretch  
+);	  	
 
 
 
