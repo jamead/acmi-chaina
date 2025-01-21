@@ -71,8 +71,6 @@ END COMPONENT;
   
 
   signal rx_data                : std_logic_vector(31 downto 0);
-  signal rx_data_prev           : std_logic_vector(31 downto 0);
-  
   
   signal tx_fifo_dout   : std_logic_vector(31 downto 0);
   signal tx_fifo_rden   : std_logic;
@@ -87,7 +85,6 @@ END COMPONENT;
    attribute mark_debug of gt0_rxdata_i : signal is "true";    
    attribute mark_debug of gt0_rxcharisk_i : signal is "true";
    attribute mark_debug of rx_data : signal is "true";
-   attribute mark_debug of rx_data_prev: signal is "true";
    attribute mark_debug of state: signal is "true";
    attribute mark_debug of tx_fifo_dout: signal is "true";
    attribute mark_debug of tx_fifo_rden: signal is "true"; 

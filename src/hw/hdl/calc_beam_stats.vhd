@@ -45,14 +45,14 @@ architecture behv of calc_beam_stats is
 
   attribute mark_debug                 : string;
 
-  attribute mark_debug of peak: signal is "true";   
-  attribute mark_debug of baseline: signal is "true";
-  attribute mark_debug of baseline_val: signal is "true";
-  attribute mark_debug of integral: signal is "true";
-  attribute mark_debug of integral_val: signal is "true";
-  attribute mark_debug of gate_start: signal is "true";
-  attribute mark_debug of baseline_gate: signal is "true";
-  attribute mark_debug of integral_gate: signal is "true";
+--  attribute mark_debug of peak: signal is "true";   
+--  attribute mark_debug of baseline: signal is "true";
+--  attribute mark_debug of baseline_val: signal is "true";
+--  attribute mark_debug of integral: signal is "true";
+--  attribute mark_debug of integral_val: signal is "true";
+--  attribute mark_debug of gate_start: signal is "true";
+--  attribute mark_debug of baseline_gate: signal is "true";
+--  attribute mark_debug of integral_gate: signal is "true";
 
   
   

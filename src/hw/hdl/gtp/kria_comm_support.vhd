@@ -490,17 +490,17 @@ signal cpll_reset_pll0_q0_clk0_refclk_i : std_logic;
 signal cpll_pd_pll0_q0_clk0_refclk_i : std_logic;
 
 
-   attribute mark_debug                  : string;
-   attribute mark_debug of SOFT_RESET_TX_IN : signal is "true";    
-   attribute mark_debug of SOFT_RESET_RX_IN : signal is "true";
-   attribute mark_debug of gt0_txmmcm_lock_i: signal is "true";
-   attribute mark_debug of gt0_txmmcm_reset_i: signal is "true";
-   attribute mark_debug of gt0_rxmmcm_lock_i: signal is "true";
-   attribute mark_debug of gt0_rxmmcm_reset_i: signal is "true";
-   attribute mark_debug of gt0_tx_fsm_reset_done_out: signal is "true";
-   attribute mark_debug of gt0_rx_fsm_reset_done_out: signal is "true";
-   attribute mark_debug of gt0_rxresetdone_out: signal is "true";
-   attribute mark_debug of gt0_txresetdone_out: signal is "true";
+--   attribute mark_debug                  : string;
+--   attribute mark_debug of SOFT_RESET_TX_IN : signal is "true";    
+--   attribute mark_debug of SOFT_RESET_RX_IN : signal is "true";
+--   attribute mark_debug of gt0_txmmcm_lock_i: signal is "true";
+--   attribute mark_debug of gt0_txmmcm_reset_i: signal is "true";
+--   attribute mark_debug of gt0_rxmmcm_lock_i: signal is "true";
+--   attribute mark_debug of gt0_rxmmcm_reset_i: signal is "true";
+--   attribute mark_debug of gt0_tx_fsm_reset_done_out: signal is "true";
+--   attribute mark_debug of gt0_rx_fsm_reset_done_out: signal is "true";
+--   attribute mark_debug of gt0_rxresetdone_out: signal is "true";
+--   attribute mark_debug of gt0_txresetdone_out: signal is "true";
 
    
    

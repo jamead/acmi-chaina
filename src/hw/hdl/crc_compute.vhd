@@ -41,16 +41,16 @@ architecture behv of crc_compute is
   
 
 
-   --debug signals (connect to ila)
-   attribute mark_debug                 : string;
-   attribute mark_debug of clk_cnt: signal is "true";   
-   attribute mark_debug of crc_check: signal is "true";
-   attribute mark_debug of rddata: signal is "true";
-   attribute mark_debug of crc_en: signal is "true";
-   attribute mark_debug of crc_rst: signal is "true";             
-   attribute mark_debug of bytes_read: signal is "true";
-   attribute mark_debug of crc_out: signal is "true";
-   attribute mark_debug of crc_calc: signal is "true";
+--   --debug signals (connect to ila)
+--   attribute mark_debug                 : string;
+--   attribute mark_debug of clk_cnt: signal is "true";   
+--   attribute mark_debug of crc_check: signal is "true";
+--   attribute mark_debug of rddata: signal is "true";
+--   attribute mark_debug of crc_en: signal is "true";
+--   attribute mark_debug of crc_rst: signal is "true";             
+--   attribute mark_debug of bytes_read: signal is "true";
+--   attribute mark_debug of crc_out: signal is "true";
+--   attribute mark_debug of crc_calc: signal is "true";
 
 
 begin  

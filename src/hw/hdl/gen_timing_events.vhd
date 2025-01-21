@@ -49,14 +49,14 @@ architecture behv of gen_timing_events is
   signal fp_trig_out      : std_logic;
 
    --debug signals (connect to ila)
-   attribute mark_debug                 : string;
-   attribute mark_debug of beam_detect_window: signal is "true";       
-   attribute mark_debug of beam_cycle_window: signal is "true";
-   attribute mark_debug of fp_trig_out: signal is "true";
-   attribute mark_debug of pzed_params: signal is "true";
-   attribute mark_debug of trig_out: signal is "true";
-   attribute mark_debug of ext_trig: signal is "true";
-   attribute mark_debug of fiber_trig_fp: signal is "true";
+--   attribute mark_debug                 : string;
+--   attribute mark_debug of beam_detect_window: signal is "true";       
+--   attribute mark_debug of beam_cycle_window: signal is "true";
+--   attribute mark_debug of fp_trig_out: signal is "true";
+--   attribute mark_debug of pzed_params: signal is "true";
+--   attribute mark_debug of trig_out: signal is "true";
+--   attribute mark_debug of ext_trig: signal is "true";
+--   attribute mark_debug of fiber_trig_fp: signal is "true";
 
 begin  
 

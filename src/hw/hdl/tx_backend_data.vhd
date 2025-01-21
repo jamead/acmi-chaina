@@ -83,11 +83,11 @@ END component;
   attribute mark_debug                 : string;
   attribute mark_debug of tx_data_enb: signal is "true";
   attribute mark_debug of tx_data: signal is "true";
-  attribute mark_debug of words_written: signal is "true";
-  attribute mark_debug of words_read: signal is "true";
-  attribute mark_debug of adcfifo_rden: signal is "true";
-  attribute mark_debug of state: signal is "true";
-  attribute mark_debug of startup_cnt: signal is "true";
+  --attribute mark_debug of words_written: signal is "true";
+  --attribute mark_debug of words_read: signal is "true";
+  --attribute mark_debug of adcfifo_rden: signal is "true";
+  --attribute mark_debug of state: signal is "true";
+  --attribute mark_debug of startup_cnt: signal is "true";
 
   
 begin  
@@ -161,7 +161,7 @@ process (clk)
            tx_data_enb <= '1';
            case words_written is
              --header
-             when 0   =>  tx_data   <= x"ba5eba11";
+             when 0   =>  tx_data   <= x"0000beef";
              when 1   =>  tx_data   <= std_logic_vector(to_unsigned(FPGA_VERSION,32)); 
              -- beam pulse stats
              when 2   =>  tx_data   <= std_logic_vector(resize(signed(pulse_stats(0).baseline),32));

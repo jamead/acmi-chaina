@@ -72,7 +72,9 @@ proc setSources {} {
   lappend Sources {"../hdl/stretch.vhd" "VHDL 2008"}  
 
   lappend Sources {"../cstr/pins.xdc"  "XDC"} 
-  lappend Sources {"../cstr/gtp.xdc"  "XDC"}    
+  lappend Sources {"../cstr/gtp.xdc"  "XDC"}   
+  lappend Sources {"../cstr/timing.xdc"  "XDC"}  
+   append Sources {"../cstr/debug.xdc"  "XDC"}   
       
   #lappend Sources {"../cstr/timing.xdc"  "XDC"} 
   #lappend Sources {"../cstr/debug.xdc"  "XDC"} 

@@ -61,26 +61,26 @@ architecture behv of eeprom_interface is
   
   
   
-  attribute mark_debug                  : string;
-  --attribute mark_debug of eeprom_data : signal is "true";
-  attribute mark_debug of eeprom_params: signal is "true";
-  attribute mark_debug of trig : signal is "true";  
-  attribute mark_debug of bytes_read : signal is "true"; 
-  attribute mark_debug of state : signal is "true";
-  attribute mark_debug of command : signal is "true";
-  attribute mark_debug of xfer_done : signal is "true"; 
-  attribute mark_debug of crc_en : signal is "true";
-  attribute mark_debug of crc_out: signal is "true";
-  attribute mark_debug of crc_result: signal is "true";
-  attribute mark_debug of crc_rst: signal is "true";
-  attribute mark_debug of read_eeprom_done : signal is "true";
-  attribute mark_debug of accum_limit_hr: signal is "true";
-  attribute mark_debug of accum_len: signal is "true";
-  attribute mark_debug of accum_limit: signal is "true";
-  attribute mark_debug of acis_keylock: signal is "true";
-  attribute mark_debug of acis_keylock_prev: signal is "true";
-  attribute mark_debug of reset_prev : signal is "true";
-  attribute mark_debug of reset: signal is "true";
+--  attribute mark_debug                  : string;
+--  --attribute mark_debug of eeprom_data : signal is "true";
+--  attribute mark_debug of eeprom_params: signal is "true";
+--  attribute mark_debug of trig : signal is "true";  
+--  attribute mark_debug of bytes_read : signal is "true"; 
+--  attribute mark_debug of state : signal is "true";
+--  attribute mark_debug of command : signal is "true";
+--  attribute mark_debug of xfer_done : signal is "true"; 
+--  attribute mark_debug of crc_en : signal is "true";
+--  attribute mark_debug of crc_out: signal is "true";
+--  attribute mark_debug of crc_result: signal is "true";
+--  attribute mark_debug of crc_rst: signal is "true";
+--  attribute mark_debug of read_eeprom_done : signal is "true";
+--  attribute mark_debug of accum_limit_hr: signal is "true";
+--  attribute mark_debug of accum_len: signal is "true";
+--  attribute mark_debug of accum_limit: signal is "true";
+--  attribute mark_debug of acis_keylock: signal is "true";
+--  attribute mark_debug of acis_keylock_prev: signal is "true";
+--  attribute mark_debug of reset_prev : signal is "true";
+--  attribute mark_debug of reset: signal is "true";
  
   
   

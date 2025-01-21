@@ -32,10 +32,10 @@ signal reset_time           : std_logic_vector(31 downto 0);
 
 
    --debug signals (connect to ila)
-   attribute mark_debug                 : string;
-   attribute mark_debug of fault_no_clock: signal is "true";   
-   attribute mark_debug of reset: signal is "true";
-   attribute mark_debug of reset_cntr: signal is "true";
+--   attribute mark_debug                 : string;
+--   attribute mark_debug of fault_no_clock: signal is "true";   
+--   attribute mark_debug of reset: signal is "true";
+--   attribute mark_debug of reset_cntr: signal is "true";
 
 
 begin  

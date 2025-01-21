@@ -31,11 +31,11 @@ architecture behv of gen_test_pulses is
   signal addr       : std_logic_vector(1 downto 0);
  
  
-  attribute mark_debug                 : string;
-  attribute mark_debug of gate: signal is "true";       
-  attribute mark_debug of pulse: signal is "true"; 
-  attribute mark_debug of en: signal is "true";       
-  attribute mark_debug of addr: signal is "true";  
+--  attribute mark_debug                 : string;
+--  attribute mark_debug of gate: signal is "true";       
+--  attribute mark_debug of pulse: signal is "true"; 
+--  attribute mark_debug of en: signal is "true";       
+--  attribute mark_debug of addr: signal is "true";  
   
   
 begin  

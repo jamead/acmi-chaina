@@ -32,13 +32,13 @@ architecture behv of gen_startup_dly is
   signal acis_keylock_last     : std_logic;
  
  
-  attribute mark_debug                 : string;
-  attribute mark_debug of eeprom_rdy      : signal is "true";
-  attribute mark_debug of eeprom_rdy_last : signal is "true";
-  attribute mark_debug of startup_enb     : signal is "true";
-  attribute mark_debug of startup_fault   : signal is "true";
-  attribute mark_debug of startup_dly_cnt : signal is "true";
-  attribute mark_debug of startup_delay   : signal is "true";
+--  attribute mark_debug                 : string;
+--  attribute mark_debug of eeprom_rdy      : signal is "true";
+--  attribute mark_debug of eeprom_rdy_last : signal is "true";
+--  attribute mark_debug of startup_enb     : signal is "true";
+--  attribute mark_debug of startup_fault   : signal is "true";
+--  attribute mark_debug of startup_dly_cnt : signal is "true";
+--  attribute mark_debug of startup_delay   : signal is "true";
  
  
  

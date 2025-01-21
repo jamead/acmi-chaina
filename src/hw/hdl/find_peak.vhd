@@ -32,9 +32,9 @@ architecture behv of find_peak is
   signal max_adc        : signed(15 downto 0);
 
   
-  attribute mark_debug                 : string;
-  attribute mark_debug of state: signal is "true";
-  attribute mark_debug of max_adc: signal is "true";
+--  attribute mark_debug                 : string;
+--  attribute mark_debug of state: signal is "true";
+--  attribute mark_debug of max_adc: signal is "true";
 
 
   

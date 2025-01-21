@@ -117,8 +117,6 @@ set_property SLEW FAST [get_ports eeprom_sdi]
 
 set_property PACKAGE_PIN E1 [get_ports eeprom_sdo]
 set_property IOSTANDARD LVCMOS33 [get_ports eeprom_sdo]
-set_property DRIVE 12 [get_ports eeprom_sdo]
-set_property SLEW FAST [get_ports eeprom_sdo]
 
 set_property PACKAGE_PIN B2 [get_ports eeprom_holdn]
 set_property IOSTANDARD LVCMOS33 [get_ports eeprom_holdn]
@@ -503,12 +501,12 @@ set_property PACKAGE_PIN V20 [get_ports {faultsn[6]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {faultsn[6]}]
 set_property DRIVE 12 [get_ports {faultsn[6]}]
 set_property SLEW FAST [get_ports {faultsn[6]}]
- 
+
 set_property PACKAGE_PIN V22 [get_ports {faultsn[7]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {faultsn[7]}]
 set_property DRIVE 12 [get_ports {faultsn[7]}]
 set_property SLEW FAST [get_ports {faultsn[7]}]
- 
+
 set_property PACKAGE_PIN P19 [get_ports {faultsn[8]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {faultsn[8]}]
 set_property DRIVE 12 [get_ports {faultsn[8]}]
@@ -602,7 +600,7 @@ set_property SLEW FAST [get_ports {faultsn[11]}]
 
 # fault latched inputs
 
- 
+
 
 # fault_beam_high latched  (fault_fpga_11_lat)
 
@@ -692,6 +690,7 @@ set_property IOSTANDARD LVCMOS33 [get_ports acis_force_trip]
 #acis_keylock
 set_property PACKAGE_PIN N15 [get_ports acis_keylock]
 set_property IOSTANDARD LVCMOS33 [get_ports acis_keylock]
+
 
 
 

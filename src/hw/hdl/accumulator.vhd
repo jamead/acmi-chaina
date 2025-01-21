@@ -85,19 +85,19 @@ END component;
  
  
    --debug signals (connect to ila)
-   attribute mark_debug                 : string;
-   attribute mark_debug of sample: signal is "true";
-   attribute mark_debug of validated_sample: signal is "true";
-   attribute mark_debug of accum: signal is "true";
-   attribute mark_debug of accum_update: signal is "true";
-   attribute mark_debug of trig: signal is "true";
-   attribute mark_debug of buffull: signal is "true";
-   attribute mark_debug of bufcnt : signal is "true";
-   attribute mark_debug of end_sample: signal is "true";
-   attribute mark_debug of wraddr: signal is "true";
-   attribute mark_debug of rdaddr: signal is "true";
-   attribute mark_debug of beam_detect_window: signal is "true";
-   attribute mark_debug of beam_valid: signal is "true";
+--   attribute mark_debug                 : string;
+--   attribute mark_debug of sample: signal is "true";
+--   attribute mark_debug of validated_sample: signal is "true";
+--   attribute mark_debug of accum: signal is "true";
+--   attribute mark_debug of accum_update: signal is "true";
+--   attribute mark_debug of trig: signal is "true";
+--   attribute mark_debug of buffull: signal is "true";
+--   attribute mark_debug of bufcnt : signal is "true";
+--   attribute mark_debug of end_sample: signal is "true";
+--   attribute mark_debug of wraddr: signal is "true";
+--   attribute mark_debug of rdaddr: signal is "true";
+--   attribute mark_debug of beam_detect_window: signal is "true";
+--   attribute mark_debug of beam_valid: signal is "true";
    
  
  

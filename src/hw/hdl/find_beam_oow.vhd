@@ -52,22 +52,22 @@ architecture behv of find_beam_oow is
   attribute mark_debug                 : string;
 
 
-  attribute mark_debug of gate: signal is "true";
-  attribute mark_debug of gate_or: signal is "true";
-  attribute mark_debug of boow_adc_data: signal is "true";
-  attribute mark_debug of pulse_found: signal is "true";
-  attribute mark_debug of peakfind_gate: signal is "true";
-  attribute mark_debug of peak: signal is "true";
-  attribute mark_debug of peak_val: signal is "true";
-  attribute mark_debug of peak_samplenum: signal is "true";        
-  attribute mark_debug of baseline_gate: signal is "true";
-  attribute mark_debug of baseline: signal is "true";
-  attribute mark_debug of baseline_val: signal is "true";
-  attribute mark_debug of integral_gate: signal is "true";
-  attribute mark_debug of integral: signal is "true";
-  attribute mark_debug of integral_val: signal is "true";      
-  attribute mark_debug of fwhm: signal is "true";
-  attribute mark_debug of fwhm_val: signal is "true";
+--  attribute mark_debug of gate: signal is "true";
+--  attribute mark_debug of gate_or: signal is "true";
+--  attribute mark_debug of boow_adc_data: signal is "true";
+--  attribute mark_debug of pulse_found: signal is "true";
+--  attribute mark_debug of peakfind_gate: signal is "true";
+--  attribute mark_debug of peak: signal is "true";
+--  attribute mark_debug of peak_val: signal is "true";
+--  attribute mark_debug of peak_samplenum: signal is "true";        
+--  attribute mark_debug of baseline_gate: signal is "true";
+--  attribute mark_debug of baseline: signal is "true";
+--  attribute mark_debug of baseline_val: signal is "true";
+--  attribute mark_debug of integral_gate: signal is "true";
+--  attribute mark_debug of integral: signal is "true";
+--  attribute mark_debug of integral_val: signal is "true";      
+--  attribute mark_debug of fwhm: signal is "true";
+--  attribute mark_debug of fwhm_val: signal is "true";
 
  
   

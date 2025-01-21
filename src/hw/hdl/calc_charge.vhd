@@ -46,13 +46,13 @@ end component;
   signal gate_width          : std_logic_vector(31 downto 0) := 32d"72";
 
    
-  attribute mark_debug : string;
-  attribute mark_debug of adc_data: signal is "true";
-  attribute mark_debug of adc_data_dly: signal is "true"; 
-  attribute mark_debug of adc_data_inv: signal is "true"; 
-  attribute mark_debug of adc_data_inv_dly: signal is "true";
-  attribute mark_debug of test_pulse_gates: signal is "true";
-  attribute mark_debug of adc_samplenum: signal is "true";
+--  attribute mark_debug : string;
+--  attribute mark_debug of adc_data: signal is "true";
+--  attribute mark_debug of adc_data_dly: signal is "true"; 
+--  attribute mark_debug of adc_data_inv: signal is "true"; 
+--  attribute mark_debug of adc_data_inv_dly: signal is "true";
+--  attribute mark_debug of test_pulse_gates: signal is "true";
+--  attribute mark_debug of adc_samplenum: signal is "true";
   
   
   

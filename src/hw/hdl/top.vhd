@@ -83,7 +83,7 @@ generic(
     );
 end top;
  
- 
+   
  
 architecture behv of top is
 
@@ -146,19 +146,19 @@ architecture behv of top is
    attribute mark_debug                 : string;
    attribute mark_debug of adc_data: signal is "true";        
    attribute mark_debug of soft_trig: signal is "true"; 
-   attribute mark_debug of tp_pulse: signal is "true";
-   attribute mark_debug of ext_trig: signal is "true";
-   attribute mark_debug of trig: signal is "true"; 
-   attribute mark_debug of fault_bad_power: signal is "true";
-   attribute mark_debug of fault_no_clock: signal is "true";  
-   attribute mark_debug of fault_no_pulse: signal is "true";  
-   attribute mark_debug of fault_no_trigger: signal is "true";   
+--   attribute mark_debug of tp_pulse: signal is "true";
+--   attribute mark_debug of ext_trig: signal is "true";
+--   attribute mark_debug of trig: signal is "true"; 
+--   attribute mark_debug of fault_bad_power: signal is "true";
+--   attribute mark_debug of fault_no_clock: signal is "true";  
+--   attribute mark_debug of fault_no_pulse: signal is "true";  
+--   attribute mark_debug of fault_no_trigger: signal is "true";   
    
-   attribute mark_debug of acis_faultn: signal is "true";   
-   attribute mark_debug of acis_fault_rdbk: signal is "true";   
-   attribute mark_debug of acis_reset: signal is "true";   
-   attribute mark_debug of acis_force_trip: signal is "true";   
-   attribute mark_debug of acis_keylock: signal is "true";          
+--   attribute mark_debug of acis_faultn: signal is "true";   
+--   attribute mark_debug of acis_fault_rdbk: signal is "true";   
+--   attribute mark_debug of acis_reset: signal is "true";   
+--   attribute mark_debug of acis_force_trip: signal is "true";   
+--   attribute mark_debug of acis_keylock: signal is "true";          
 
 
 
