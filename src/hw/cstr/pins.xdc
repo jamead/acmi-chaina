@@ -135,7 +135,7 @@ set_property SLEW FAST [get_ports keylock_detect_led]
 
 
 # tp pulses (to Tony's test pulse generation board)
-#header pin 1 :  tp_sw3 on schematic 
+#header pin 1 :  tp_sw3 on schematic
 set_property PACKAGE_PIN M5 [get_ports {tp_neg_pulse[0]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {tp_neg_pulse[0]}]
 set_property DRIVE 12 [get_ports {tp_neg_pulse[0]}]
@@ -177,7 +177,7 @@ set_property IOSTANDARD LVCMOS33 [get_ports {tp_pos_pulse[1]}]
 set_property DRIVE 12 [get_ports {tp_pos_pulse[1]}]
 set_property SLEW FAST [get_ports {tp_pos_pulse[1]}]
 
-#header pin 15:  tpdac_syncn 
+#header pin 15:  tpdac_syncn
 set_property PACKAGE_PIN P2 [get_ports {tp_pos_pulse[2]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {tp_pos_pulse[2]}]
 set_property DRIVE 12 [get_ports {tp_pos_pulse[2]}]
@@ -683,6 +683,7 @@ set_property IOSTANDARD LVCMOS33 [get_ports acis_force_trip]
 #acis_keylock
 set_property PACKAGE_PIN N15 [get_ports acis_keylock]
 set_property IOSTANDARD LVCMOS33 [get_ports acis_keylock]
+
 
 
 
