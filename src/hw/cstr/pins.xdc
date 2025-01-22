@@ -135,74 +135,67 @@ set_property SLEW FAST [get_ports keylock_detect_led]
 
 
 # tp pulses (to Tony's test pulse generation board)
-#tpdac_sdin on schematic  (sw1)
-set_property PACKAGE_PIN R1 [get_ports {tp_pulse[0]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tp_pulse[0]}]
-set_property DRIVE 12 [get_ports {tp_pulse[0]}]
-set_property SLEW FAST [get_ports {tp_pulse[0]}]
+#header pin 1 :  tp_sw3 on schematic 
+set_property PACKAGE_PIN M5 [get_ports {tp_neg_pulse[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tp_neg_pulse[0]}]
+set_property DRIVE 12 [get_ports {tp_neg_pulse[0]}]
+set_property SLEW FAST [get_ports {tp_neg_pulse[0]}]
 
-#tpdac_sclk on schematic  (sw2)
-set_property PACKAGE_PIN P4 [get_ports {tp_pulse[1]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tp_pulse[1]}]
-set_property DRIVE 12 [get_ports {tp_pulse[1]}]
-set_property SLEW FAST [get_ports {tp_pulse[1]}]
+#header pin 3 :  tp_sw2 on schematic
+set_property PACKAGE_PIN M6 [get_ports {tp_neg_pulse[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tp_neg_pulse[1]}]
+set_property DRIVE 12 [get_ports {tp_neg_pulse[1]}]
+set_property SLEW FAST [get_ports {tp_neg_pulse[1]}]
 
-#tpdac_syncn on schematic (sw3)
-set_property PACKAGE_PIN P2 [get_ports {tp_pulse[2]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tp_pulse[2]}]
-set_property DRIVE 12 [get_ports {tp_pulse[2]}]
-set_property SLEW FAST [get_ports {tp_pulse[2]}]
+#header pin 5:  tp_sw1 on schematic
+set_property PACKAGE_PIN N2 [get_ports {tp_neg_pulse[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tp_neg_pulse[2]}]
+set_property DRIVE 12 [get_ports {tp_neg_pulse[2]}]
+set_property SLEW FAST [get_ports {tp_neg_pulse[2]}]
 
-#tpdac_ldacn on schematic  (sw4)
-set_property PACKAGE_PIN P1 [get_ports {tp_pulse[3]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tp_pulse[3]}]
-set_property DRIVE 12 [get_ports {tp_pulse[3]}]
-set_property SLEW FAST [get_ports {tp_pulse[3]}]
+#header pin 7:  tp_sw0 on schematic
+set_property PACKAGE_PIN N3 [get_ports {tp_neg_pulse[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tp_neg_pulse[3]}]
+set_property DRIVE 12 [get_ports {tp_neg_pulse[3]}]
+set_property SLEW FAST [get_ports {tp_neg_pulse[3]}]
 
-#tpdac_clrn on schematic (a0)
-set_property PACKAGE_PIN N5 [get_ports {tp_pulse[4]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tp_pulse[4]}]
-set_property DRIVE 12 [get_ports {tp_pulse[4]}]
-set_property SLEW FAST [get_ports {tp_pulse[4]}]
+#header pin 9:  tpdac_sdo on schematic
+set_property PACKAGE_PIN N4 [get_ports {tp_neg_pulse[4]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tp_neg_pulse[4]}]
+set_property DRIVE 12 [get_ports {tp_neg_pulse[4]}]
+set_property SLEW FAST [get_ports {tp_neg_pulse[4]}]
 
-#tpdac_sdo on schematic  (a1)
-set_property PACKAGE_PIN N4 [get_ports {tp_pulse[5]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tp_pulse[5]}]
-set_property DRIVE 12 [get_ports {tp_pulse[5]}]
-set_property SLEW FAST [get_ports {tp_pulse[5]}]
+#header pin 11:  tpdac_clrn on schematic
+set_property PACKAGE_PIN N5 [get_ports {tp_pos_pulse[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tp_pos_pulse[0]}]
+set_property DRIVE 12 [get_ports {tp_pos_pulse[0]}]
+set_property SLEW FAST [get_ports {tp_pos_pulse[0]}]
 
-#tp_sw0 on schematic  (en)
-set_property PACKAGE_PIN N3 [get_ports {tp_pulse[6]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tp_pulse[6]}]
-set_property DRIVE 12 [get_ports {tp_pulse[6]}]
-set_property SLEW FAST [get_ports {tp_pulse[6]}]
+#header pin 13:  tpdac_ldacn on schematic
+set_property PACKAGE_PIN P1 [get_ports {tp_pos_pulse[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tp_pos_pulse[1]}]
+set_property DRIVE 12 [get_ports {tp_pos_pulse[1]}]
+set_property SLEW FAST [get_ports {tp_pos_pulse[1]}]
 
-#tp_sw1 on schematic (nc)
-set_property PACKAGE_PIN N2 [get_ports {tp_pulse[7]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tp_pulse[7]}]
-set_property DRIVE 12 [get_ports {tp_pulse[7]}]
-set_property SLEW FAST [get_ports {tp_pulse[7]}]
+#header pin 15:  tpdac_syncn 
+set_property PACKAGE_PIN P2 [get_ports {tp_pos_pulse[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tp_pos_pulse[2]}]
+set_property DRIVE 12 [get_ports {tp_pos_pulse[2]}]
+set_property SLEW FAST [get_ports {tp_pos_pulse[2]}]
+
+#header pin 17:  tpdac_sclk
+set_property PACKAGE_PIN P4 [get_ports {tp_pos_pulse[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tp_pos_pulse[3]}]
+set_property DRIVE 12 [get_ports {tp_pos_pulse[3]}]
+set_property SLEW FAST [get_ports {tp_pos_pulse[3]}]
+
+#header pin 19:  tpdac_sdin
+set_property PACKAGE_PIN R1 [get_ports {tp_pos_pulse[4]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tp_pos_pulse[4]}]
+set_property DRIVE 12 [get_ports {tp_pos_pulse[4]}]
+set_property SLEW FAST [get_ports {tp_pos_pulse[4]}]
 
 
-
-
-
-
-#picozed to artix spi
-#set_property PACKAGE_PIN D21 [get_ports pzed_spi_dout]
-#set_property IOSTANDARD LVCMOS33 [get_ports pzed_spi_dout]
-
-
-#set_property PACKAGE_PIN E22 [get_ports pzed_spi_din]
-#set_property IOSTANDARD LVCMOS33 [get_ports pzed_spi_din]
-#set_property DRIVE 12 [get_ports pzed_spi_din]
-#set_property SLEW FAST [get_ports pzed_spi_din]
-
-#set_property PACKAGE_PIN D17 [get_ports pzed_spi_sclk]
-#set_property IOSTANDARD LVCMOS33 [get_ports pzed_spi_sclk]
-
-#set_property PACKAGE_PIN E21 [get_ports pzed_spi_cs]
-#set_property IOSTANDARD LVCMOS33 [get_ports pzed_spi_cs]
 
 
 
@@ -690,6 +683,7 @@ set_property IOSTANDARD LVCMOS33 [get_ports acis_force_trip]
 #acis_keylock
 set_property PACKAGE_PIN N15 [get_ports acis_keylock]
 set_property IOSTANDARD LVCMOS33 [get_ports acis_keylock]
+
 
 
 

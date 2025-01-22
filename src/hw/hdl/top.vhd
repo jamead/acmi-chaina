@@ -43,7 +43,8 @@ generic(
     gtp_rx0_n               : in std_logic;
  
     --test pulse signals    
-    tp_pulse                : out std_logic_vector(7 downto 0);
+    tp_pos_pulse            : out std_logic_vector(4 downto 0);
+    tp_neg_pulse            : out std_logic_vector(4 downto 0);
     
     --fault input readbacks
     fault_bad_power         : in std_logic;
@@ -247,8 +248,8 @@ timing: entity work.gen_timing_events
     beam_detect_window => beam_detect_window,
     beam_cycle_window => beam_cycle_window,
     adc_samplenum => adc_samplenum,
-    tp_pulse => tp_pulse,
-    tp_gates => tp_gates,
+    tp_pos_pulse => tp_pos_pulse,
+    tp_neg_pulse => tp_neg_pulse,
     fiber_trig_fp => open, --fiber_trig_fp,
     timestamp => timestamp,
     watchdog_clock => watchdog_clock,

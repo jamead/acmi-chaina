@@ -18,7 +18,6 @@ entity calc_beam_stats is
    adc_data         : in signed(15 downto 0);
    adc_data_dly     : in signed(15 downto 0);
    gate_start       : in std_logic_vector(31 downto 0);
-   threshold        : in signed(15 downto 0);
    adc_samplenum    : in std_logic_vector(31 downto 0);
    pulse_stats      : out pulse_stats_type;
    gate             : out std_logic
@@ -65,7 +64,7 @@ pulse_stats.baseline <= std_logic_vector(baseline);
 pulse_stats.integral <= std_logic_vector(integral);
 pulse_stats.peak <= std_logic_vector(peak);
 pulse_stats.peak_index <= peak_sampnum;
-pulse_stats.threshold <= std_logic_vector(threshold);
+pulse_stats.threshold <= (others => '0');
 pulse_stats.fwhm <= std_logic_vector(fwhm);
 pulse_stats.peak_found <= '1';
 

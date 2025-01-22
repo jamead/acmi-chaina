@@ -90,26 +90,16 @@ eeprom_rdy <= read_eeprom_done;
 
 
 eeprom_sim: if (SIM_MODE = 1) generate eeprom_sim_settings:
-  eeprom_params.tp1_gate_delay       <= 32d"3000";
-  eeprom_params.tp1_gate_width       <= 32d"600";
   eeprom_params.tp1_pulse_delay      <= 32d"3300";
   eeprom_params.tp1_pulse_width      <= 32d"8";
-  eeprom_params.tp2_gate_delay       <= 32d"3600";
-  eeprom_params.tp2_gate_width       <= 32d"600";
+  eeprom_params.tp1_adc_delay        <= 32d"3290";
   eeprom_params.tp2_pulse_delay      <= 32d"3900";
   eeprom_params.tp2_pulse_width      <= 32d"3";
-  eeprom_params.tp3_gate_delay       <= 32d"4200";
-  eeprom_params.tp3_gate_width       <= 32d"600";
-  eeprom_params.tp3_pulse_delay      <= 32d"4500";
-  eeprom_params.tp3_pulse_width      <= 32d"2";        
-  eeprom_params.beam_adc_delay       <= 32d"720";
-  eeprom_params.tp1_adc_delay        <= 32d"3290";
   eeprom_params.tp2_adc_delay        <= 32d"3890";
-  eeprom_params.tp3_adc_delay        <= 32d"4480";     
-  eeprom_params.tp1_threshold        <= 16d"1000"; --16d"2100";
-  eeprom_params.tp2_threshold        <= std_logic_vector(to_signed(2100,16));
-  eeprom_params.tp3_threshold        <= std_logic_vector(to_signed(500,16));
-  eeprom_params.beam_threshold       <= std_logic_vector(to_signed(500,16));
+  eeprom_params.tp3_pulse_delay      <= 32d"4500";
+  eeprom_params.tp3_pulse_width      <= 32d"2";   
+  eeprom_params.tp3_adc_delay        <= 32d"4480";      
+  eeprom_params.beam_adc_delay       <= 32d"720";
   eeprom_params.beam_oow_threshold   <= std_logic_vector(to_signed(150,16));
   eeprom_params.tp1_int_low_limit    <= 32d"21000";
   eeprom_params.tp1_int_high_limit   <= 32d"22000";
@@ -142,8 +132,7 @@ eeprom_sim: if (SIM_MODE = 1) generate eeprom_sim_settings:
   eeprom_params.charge_calibration   <= 32d"14000";
   eeprom_params.accum_q_min          <= 32d"10000";
   --eeprom_params.startup_delay        <= 32d"1800";
-  eeprom_params.accum_length         <= 32d"3600";
-  
+  eeprom_params.accum_length         <= 32d"3600"; 
   eeprom_params.crc32_eeprom         <= x"01234567";
 end generate;
 

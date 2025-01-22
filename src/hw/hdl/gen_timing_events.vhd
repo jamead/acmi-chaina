@@ -30,8 +30,8 @@ entity gen_timing_events is
     beam_cycle_window   : out std_logic;
     adc_samplenum       : out std_logic_vector(31 downto 0);
     accum_update        : out std_logic;
-    tp_pulse            : out std_logic_vector(7 downto 0);
-    tp_gates            : out std_logic_vector(3 downto 0);
+    tp_pos_pulse        : out std_logic_vector(4 downto 0);
+    tp_neg_pulse        : out std_logic_vector(4 downto 0);
     fiber_trig_fp       : out std_logic;
     timestamp           : out std_logic_vector(31 downto 0);
     watchdog_clock      : out std_logic;
@@ -109,8 +109,8 @@ gen_tp: entity work.gen_test_pulses
    reset => reset, 
    trig => trig_out, --soft_trig,  
    params => eeprom_params, 
-   tp_pulses => tp_pulse,
-   tp_gates => tp_gates 
+   tp_pos_pulse => tp_pos_pulse,
+   tp_neg_pulse => tp_neg_pulse 
   );    
   
   
