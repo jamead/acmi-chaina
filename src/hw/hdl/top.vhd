@@ -145,7 +145,8 @@ architecture behv of top is
  
    --debug signals (connect to ila)
    attribute mark_debug                 : string;
-   attribute mark_debug of adc_data: signal is "true";        
+   attribute mark_debug of adc_data: signal is "true";  
+   attribute mark_debug of dac_data: signal is "true";      
    attribute mark_debug of soft_trig: signal is "true"; 
 --   attribute mark_debug of tp_pulse: signal is "true";
 --   attribute mark_debug of ext_trig: signal is "true";

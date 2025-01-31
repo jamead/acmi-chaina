@@ -1,22 +1,3 @@
-----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date: 10/15/2021 10:23:58 AM
--- Design Name: 
--- Module Name: adc_interface - behv
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
-----------------------------------------------------------------------------------
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -74,25 +55,6 @@ end process;
 
 
 --read adc data
---read_adc: entity work.readadc_ltc2107
---  generic map (
---    SIM_MODE => SIM_MODE
---  )
---  port map (
---    adc_clk_p => adc_clk_p,
---    adc_clk_n => adc_clk_n,
---    reset => reset,
---    adc_data_p => adc_data_p,
---    adc_data_n => adc_data_n,
---    adc_of_p => adc_of_p,
---    adc_of_n => adc_of_n,
---    adc_data => adc_data_ob,
---    adc_clk => adc_clk,
---    adc_sat => adc_sat
--- );
-
-
---read adc data
 read_adc: entity work.read_ltc2107
   generic map (
     SIM_MODE => SIM_MODE
@@ -112,10 +74,6 @@ read_adc: entity work.read_ltc2107
 
 
 
-
---din   <= '0';   
---sclk  <= '0';
---sync  <= '1';
 
 -- adc spi configuration at power-on
 adc_spi: entity work.ltc2107_spi

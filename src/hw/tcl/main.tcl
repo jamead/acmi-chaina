@@ -110,6 +110,7 @@ proc doOnCreate {} {
   source ${TclPath}/gtp_clk.tcl   
   source ${TclPath}/beamoow_fifo.tcl 
   source ${TclPath}/kria_comm.tcl 
+  source ${TclPath}vio_spi.tcl
 
 
   addSources "Sources" 

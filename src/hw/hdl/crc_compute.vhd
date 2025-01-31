@@ -42,15 +42,15 @@ architecture behv of crc_compute is
 
 
 --   --debug signals (connect to ila)
---   attribute mark_debug                 : string;
---   attribute mark_debug of clk_cnt: signal is "true";   
---   attribute mark_debug of crc_check: signal is "true";
---   attribute mark_debug of rddata: signal is "true";
---   attribute mark_debug of crc_en: signal is "true";
---   attribute mark_debug of crc_rst: signal is "true";             
---   attribute mark_debug of bytes_read: signal is "true";
---   attribute mark_debug of crc_out: signal is "true";
---   attribute mark_debug of crc_calc: signal is "true";
+   attribute mark_debug                 : string;
+   attribute mark_debug of clk_cnt: signal is "true";   
+   attribute mark_debug of crc_check: signal is "true";
+   attribute mark_debug of rddata: signal is "true";
+   attribute mark_debug of crc_en: signal is "true";
+   attribute mark_debug of crc_rst: signal is "true";             
+   attribute mark_debug of bytes_read: signal is "true";
+   attribute mark_debug of crc_out: signal is "true";
+   attribute mark_debug of crc_calc: signal is "true";
 
 
 begin  
@@ -64,7 +64,8 @@ process(clk)
         clk_cnt <= 32d"0"; 
         crc_check <= '0';
       else
-        if (clk_cnt >= 32d"200000000") then
+        --if (clk_cnt >= 32d"200000000") then
+        if (clk_cnt >= 32d"200000") then
           crc_check <= '1';
           clk_cnt <= 32d"0";
         else

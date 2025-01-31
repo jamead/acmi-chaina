@@ -50,8 +50,6 @@ begin
 adc_sat <= adc_of;
 
 adc_clk_inst  : IBUFDS  port map (O => adc_clk_i, I => adc_clk_p, IB => adc_clk_n); 
-
-
 adc_clk_bufg  : BUFG    port map (O => adc_clk, I => adc_clk_dlyd);
 
 gen_adcdata: for i in 0 to 7 generate
@@ -109,8 +107,6 @@ dly_clk : IDELAYE2
 
 
 
-
-
 gen_iddrs: for i in 0 to 7 generate
 begin
 da0_1 : IDDR 
@@ -135,9 +131,7 @@ end generate;
 
 adcdata_sim: if (SIM_MODE = 1) generate read_adc_data: 
   process(adc_clk)
-    --file adc_vector   : text open read_mode is "/home/mead/aps/besocm/firmware/revA_brd/besocm_artix_v6/sim/RaweJoe2.txt";
     file adc_vector   : text open read_mode is "/home/mead/kria/firmware/acmi_artix_v2/sim/joe_cow_testdata.txt";   
-    --file adc_vector   : text open read_mode is "/home/mead/aps/besocm/firmware/revA_brd/besocm_artix_v3/sim/wvfm_data_4-15-22";
     variable row       : line;
     variable adc_raw  : integer;
 
