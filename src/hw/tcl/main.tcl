@@ -110,7 +110,7 @@ proc doOnCreate {} {
   source ${TclPath}/gtp_clk.tcl   
   source ${TclPath}/beamoow_fifo.tcl 
   source ${TclPath}/kria_comm.tcl 
-  source ${TclPath}vio_spi.tcl
+  source ${TclPath}/vio_spi.tcl
 
 
   addSources "Sources" 
@@ -118,10 +118,10 @@ proc doOnCreate {} {
   ::fwfwk::printCBM "TclPath = ${TclPath}"
   ::fwfwk::printCBM "SrcPath = ${::fwfwk::SrcPath}"
   
-  set_property used_in_synthesis false [get_files ${::fwfwk::SrcPath}/hw/hdl/crc_tb.sv] 
-  set_property used_in_implementation false [get_files ${::fwfwk::SrcPath}/hw/hdl/crc_tb.sv] 
+  #set_property used_in_synthesis false [get_files ${::fwfwk::SrcPath}/hw/hdl/crc_tb.sv] 
+  #set_property used_in_implementation false [get_files ${::fwfwk::SrcPath}/hw/hdl/crc_tb.sv] 
   
-  open_wave_config "${::fwfwk::SrcPath}/hw/sim/top_tb_behav.wcfg"
+  #open_wave_config "${::fwfwk::SrcPath}/hw/sim/top_tb_behav.wcfg"
   
 
   
