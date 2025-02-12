@@ -15,3 +15,4 @@ set_false_path -from [get_pins -hierarchical *accum_limit_hr*] -to $_xlnx_shared
 set_property BITSTREAM.CONFIG.SPI_BUSWIDTH 4 [current_design]
 
 
+

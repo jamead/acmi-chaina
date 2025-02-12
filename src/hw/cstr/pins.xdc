@@ -81,11 +81,11 @@ set_property IOSTANDARD LVCMOS33 [get_ports adc_spi_sdo]
 set_property PULLUP true [get_ports adc_spi_sdo]
 
 
-# trigger input and outputs
-#set_property PACKAGE_PIN N17 [get_ports fiber_trig_in]
-#set_property IOSTANDARD LVCMOS33 [get_ports fiber_trig_in]
-#set_property DRIVE 12 [get_ports fiber_trig_in]
-#set_property SLEW FAST [get_ports fiber_trig_in]
+# trigger outputs
+set_property PACKAGE_PIN N17 [get_ports fiber_trig_watchdog]
+set_property IOSTANDARD LVCMOS33 [get_ports fiber_trig_watchdog]
+set_property DRIVE 12 [get_ports fiber_trig_watchdog]
+set_property SLEW FAST [get_ports fiber_trig_watchdog]
 
 set_property PACKAGE_PIN P15 [get_ports fiber_trig_led]
 set_property IOSTANDARD LVCMOS33 [get_ports fiber_trig_led]
@@ -683,6 +683,7 @@ set_property IOSTANDARD LVCMOS33 [get_ports acis_force_trip]
 #acis_keylock
 set_property PACKAGE_PIN N15 [get_ports acis_keylock]
 set_property IOSTANDARD LVCMOS33 [get_ports acis_keylock]
+
 
 
 

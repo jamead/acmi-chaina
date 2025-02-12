@@ -32,6 +32,7 @@ generic(
     -- trigger input from fiber
     fiber_trig_led          : out std_logic;
     fiber_trig_fp           : out std_logic;
+    fiber_trig_watchdog     : out std_logic;
     
     
     -- gtp to kria
@@ -188,7 +189,8 @@ dbg_leds(3) <= spi_xfer_stretch;
 
 
 
-fiber_trig_fp <= trig; --beam_detect_window; 
+fiber_trig_fp <= trig; 
+fiber_trig_watchdog <= trig;
 
 --inverter on LED drivers
 fiber_trig_led <= not trig_stretch; 
@@ -269,7 +271,7 @@ gen_faults: entity work.faults
     reset => reset,
     beam_cycle_window => beam_cycle_window,
     trig => trig,
-    params => eeprom_params, --pzed_params,
+    params => eeprom_params, 
     pulse_stats => pulse_stats,
     accum => accum, 
     fault_startup => fault_startup,   
