@@ -40,8 +40,6 @@ end component;
   signal adc_data            : signed(15 downto 0);
   signal adc_data_inv        : signed(15 downto 0);
   signal adc_data_dly        : std_logic_vector(15 downto 0);
-  signal gate                : std_logic_vector(3 downto 0);
-  signal gate_or             : std_logic;
   signal boow_adc_data       : signed(15 downto 0);
   signal gate_width          : std_logic_vector(31 downto 0) := 32d"72";
 
@@ -107,8 +105,7 @@ beam:  entity work.calc_beam_stats
    adc_data_dly => signed(adc_data_inv_dly), 
    gate_start => params.beam_adc_delay,  
    adc_samplenum => adc_samplenum,
-   pulse_stats => pulse_stats(0),
-   gate => gate(0) 
+   pulse_stats => pulse_stats(0)
   );    
 
 
@@ -121,8 +118,7 @@ tp1:  entity work.calc_beam_stats
    adc_data_dly => signed(adc_data_dly), 
    gate_start => params.tp1_adc_delay, 
    adc_samplenum => adc_samplenum, 
-   pulse_stats => pulse_stats(1),
-   gate => gate(1)
+   pulse_stats => pulse_stats(1)
   );    
 
 -- -2nC
@@ -134,8 +130,7 @@ tp2:  entity work.calc_beam_stats
    adc_data_dly => signed(adc_data_inv_dly), 
    gate_start => params.tp2_adc_delay,
    adc_samplenum => adc_samplenum, 
-   pulse_stats => pulse_stats(2),
-   gate => gate(2) 
+   pulse_stats => pulse_stats(2)
   );    
  
 -- -18nC
@@ -147,8 +142,7 @@ tp3:  entity work.calc_beam_stats
    adc_data_dly => signed(adc_data_inv_dly), 
    gate_start => params.tp3_adc_delay, 
    adc_samplenum => adc_samplenum,
-   pulse_stats => pulse_stats(3),
-   gate => gate(3) 
+   pulse_stats => pulse_stats(3)
   );    
 
 

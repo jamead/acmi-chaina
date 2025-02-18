@@ -25,7 +25,7 @@ component vio_spi
     clk        : in std_logic;
     probe_out0 : out std_logic_vector(7 downto 0); 
     probe_out1 : out std_logic_vector(7 downto 0);
-    probe_out2 : out std_logic
+    probe_out2 : out std_logic_vector(0 downto 0)
 );
 end component;
 
@@ -48,7 +48,7 @@ end component;
   
   signal spi_addr           : std_logic_vector(7 downto 0);
   signal spi_data           : std_logic_vector(7 downto 0);
-  signal spi_trig           : std_logic;
+  signal spi_trig           : std_logic_vector(0 downto 0);
   signal prev_spi_trig      : std_logic;
   
   
@@ -93,7 +93,7 @@ process (clk, reset)
             sclk  <= '0';
             sync  <= '1';
             prev_reset <= reset;
-            prev_spi_trig <= spi_trig;
+            prev_spi_trig <= spi_trig(0);
             if (prev_reset = '1') and (reset = '0') then
             --if (reset = '0') then
                 sync <= '0';
@@ -101,7 +101,7 @@ process (clk, reset)
                 bcnt <= 15;  
                 state <= CLKP1;
             end if;
-            if (prev_spi_trig = '0') and (spi_trig = '1') then
+            if (prev_spi_trig = '0') and (spi_trig(0) = '1') then
               sync <= '0';
               treg <= spi_addr & spi_data;
               bcnt <= 15;

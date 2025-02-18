@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="top_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="acmi_package" />
+            <top_module name="glbl" />
+            <top_module name="i2c_types" />
+            <top_module name="top_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="31.466525 us"></ZoomStartTime>
+      <ZoomEndTime time="331.162273 us"></ZoomEndTime>
+      <Cursor1Time time="0.011770 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="196"></NameColumnWidth>
+      <ValueColumnWidth column_width="94"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="57" />
+   <wvobject type="logic" fp_name="/top_tb/dut/timing/gen_rtc/reset">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/gtp_refclk1_p">
+      <obj_property name="ElementShortName">gtp_refclk1_p</obj_property>
+      <obj_property name="ObjectShortName">gtp_refclk1_p</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/gtp_rx_clk">
+      <obj_property name="ElementShortName">gtp_rx_clk</obj_property>
+      <obj_property name="ObjectShortName">gtp_rx_clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/adc_clk_p">
+      <obj_property name="ElementShortName">adc_clk_p</obj_property>
+      <obj_property name="ObjectShortName">adc_clk_p</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/adc_clk">
+      <obj_property name="ElementShortName">adc_clk</obj_property>
+      <obj_property name="ObjectShortName">adc_clk</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/adc_data_p">
+      <obj_property name="ElementShortName">adc_data_p[7:0]</obj_property>
+      <obj_property name="ObjectShortName">adc_data_p[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/beam_cycle_window">
+      <obj_property name="ElementShortName">beam_cycle_window</obj_property>
+      <obj_property name="ObjectShortName">beam_cycle_window</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/beam_detect_window">
+      <obj_property name="ElementShortName">beam_detect_window</obj_property>
+      <obj_property name="ObjectShortName">beam_detect_window</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/trig">
+      <obj_property name="ElementShortName">trig</obj_property>
+      <obj_property name="ObjectShortName">trig</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/fiber_trig_fp">
+      <obj_property name="ElementShortName">fiber_trig_fp</obj_property>
+      <obj_property name="ObjectShortName">fiber_trig_fp</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/fiber_trig_watchdog">
+      <obj_property name="ElementShortName">fiber_trig_watchdog</obj_property>
+      <obj_property name="ObjectShortName">fiber_trig_watchdog</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/tp_pos_pulse">
+      <obj_property name="ElementShortName">tp_pos_pulse[4:0]</obj_property>
+      <obj_property name="ObjectShortName">tp_pos_pulse[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/tp_neg_pulse">
+      <obj_property name="ElementShortName">tp_neg_pulse[4:0]</obj_property>
+      <obj_property name="ObjectShortName">tp_neg_pulse[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/dut/adc_data">
+      <obj_property name="ElementShortName">adc_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">adc_data[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeMin">-11183</obj_property>
+      <obj_property name="AnalogYRRangeMax">23784</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_LINEAR</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/acis_keylock">
+      <obj_property name="ElementShortName">acis_keylock</obj_property>
+      <obj_property name="ObjectShortName">acis_keylock</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/acis_keylock_debounced">
+      <obj_property name="ElementShortName">acis_keylock_debounced</obj_property>
+      <obj_property name="ObjectShortName">acis_keylock_debounced</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/timing/gen_startup_fault/acis_keylock">
+      <obj_property name="ElementShortName">acis_keylock</obj_property>
+      <obj_property name="ObjectShortName">acis_keylock</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/dut/timing/gen_startup_fault/startup_delay">
+      <obj_property name="ElementShortName">startup_delay[31:0]</obj_property>
+      <obj_property name="ObjectShortName">startup_delay[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/dut/timing/gen_startup_fault/startup_dly_cnt">
+      <obj_property name="ElementShortName">startup_dly_cnt[31:0]</obj_property>
+      <obj_property name="ObjectShortName">startup_dly_cnt[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/dut/timing/startup_cnt">
+      <obj_property name="ElementShortName">startup_cnt[31:0]</obj_property>
+      <obj_property name="ObjectShortName">startup_cnt[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/timing/gen_startup_fault/startup_fault">
+      <obj_property name="ElementShortName">startup_fault</obj_property>
+      <obj_property name="ObjectShortName">startup_fault</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/dut/timing/timestamp">
+      <obj_property name="ElementShortName">timestamp[31:0]</obj_property>
+      <obj_property name="ObjectShortName">timestamp[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider249" type="divider">
+      <obj_property name="label">calc beam</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/dut/calc_q/beam/adc_samplenum">
+      <obj_property name="ElementShortName">adc_samplenum[31:0]</obj_property>
+      <obj_property name="ObjectShortName">adc_samplenum[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/dut/calc_q/beam/gate_start">
+      <obj_property name="ElementShortName">gate_start[31:0]</obj_property>
+      <obj_property name="ObjectShortName">gate_start[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/calc_q/beam/baseline_gate">
+      <obj_property name="ElementShortName">baseline_gate</obj_property>
+      <obj_property name="ObjectShortName">baseline_gate</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/calc_q/beam/integral_gate">
+      <obj_property name="ElementShortName">integral_gate</obj_property>
+      <obj_property name="ObjectShortName">integral_gate</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/dut/calc_q/beam/integral">
+      <obj_property name="ElementShortName">integral[31:0]</obj_property>
+      <obj_property name="ObjectShortName">integral[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/dut/calc_q/beam/peak">
+      <obj_property name="ElementShortName">peak[16:0]</obj_property>
+      <obj_property name="ObjectShortName">peak[16:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/dut/calc_q/beam/baseline">
+      <obj_property name="ElementShortName">baseline[15:0]</obj_property>
+      <obj_property name="ObjectShortName">baseline[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/dut/calc_q/beam/peak_sampnum">
+      <obj_property name="ElementShortName">peak_sampnum[31:0]</obj_property>
+      <obj_property name="ObjectShortName">peak_sampnum[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider259" type="divider">
+      <obj_property name="label">accumulator</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/boxcar/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/boxcar/rst">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/top_tb/dut/boxcar/state">
+      <obj_property name="ElementShortName">state</obj_property>
+      <obj_property name="ObjectShortName">state</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/boxcar/trig">
+      <obj_property name="ElementShortName">trig</obj_property>
+      <obj_property name="ObjectShortName">trig</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/dut/boxcar/sample">
+      <obj_property name="ElementShortName">sample[31:0]</obj_property>
+      <obj_property name="ObjectShortName">sample[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/dut/boxcar/new_sample">
+      <obj_property name="ElementShortName">new_sample[31:0]</obj_property>
+      <obj_property name="ObjectShortName">new_sample[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/dut/boxcar/accum_len">
+      <obj_property name="ElementShortName">accum_len[12:0]</obj_property>
+      <obj_property name="ObjectShortName">accum_len[12:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/dut/boxcar/bufcnt">
+      <obj_property name="ElementShortName">bufcnt[12:0]</obj_property>
+      <obj_property name="ObjectShortName">bufcnt[12:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/dut/boxcar/accum">
+      <obj_property name="ElementShortName">accum[31:0]</obj_property>
+      <obj_property name="ObjectShortName">accum[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/dut/boxcar/wraddr">
+      <obj_property name="ElementShortName">wraddr[12:0]</obj_property>
+      <obj_property name="ObjectShortName">wraddr[12:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/dut/boxcar/wren">
+      <obj_property name="ElementShortName">wren[0:0]</obj_property>
+      <obj_property name="ObjectShortName">wren[0:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/dut/boxcar/rdaddr">
+      <obj_property name="ElementShortName">rdaddr[12:0]</obj_property>
+      <obj_property name="ObjectShortName">rdaddr[12:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/dut/boxcar/end_sample">
+      <obj_property name="ElementShortName">end_sample[31:0]</obj_property>
+      <obj_property name="ObjectShortName">end_sample[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider47" type="divider">
+      <obj_property name="label">i2c</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/i2c_read/clock">
+      <obj_property name="ElementShortName">clock</obj_property>
+      <obj_property name="ObjectShortName">clock</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/i2c_read/reset">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/i2c_read/scl">
+      <obj_property name="ElementShortName">scl</obj_property>
+      <obj_property name="ObjectShortName">scl</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/i2c_read/sda">
+      <obj_property name="ElementShortName">sda</obj_property>
+      <obj_property name="ObjectShortName">sda</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/i2c_read/strobe">
+      <obj_property name="ElementShortName">strobe</obj_property>
+      <obj_property name="ObjectShortName">strobe</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/top_tb/dut/i2c_read/step_count">
+      <obj_property name="ElementShortName">step_count</obj_property>
+      <obj_property name="ObjectShortName">step_count</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/i2c_read/i2c_trig">
+      <obj_property name="ElementShortName">i2c_trig</obj_property>
+      <obj_property name="ObjectShortName">i2c_trig</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/i2c_read/i2c_ready">
+      <obj_property name="ElementShortName">i2c_ready</obj_property>
+      <obj_property name="ObjectShortName">i2c_ready</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/top_tb/dut/i2c_read/i2c_state">
+      <obj_property name="ElementShortName">i2c_state</obj_property>
+      <obj_property name="ObjectShortName">i2c_state</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/i2c_read/sys_clk">
+      <obj_property name="ElementShortName">sys_clk</obj_property>
+      <obj_property name="ObjectShortName">sys_clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/dut/i2c_read/i2c_clk">
+      <obj_property name="ElementShortName">i2c_clk</obj_property>
+      <obj_property name="ObjectShortName">i2c_clk</obj_property>
+   </wvobject>
+</wave_config>

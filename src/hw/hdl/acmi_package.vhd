@@ -17,14 +17,14 @@ type eeprom_data_type is array(0 to EEPROM_LEN) of std_logic_vector(7 downto 0);
 
 
 
-type pzed_parameters_type is record
+type cntrl_parameters_type is record
     accum_reset          : std_logic; 
     eeprom_trig          : std_logic;
     eeprom_readall       : std_logic;
     trig_out_delay       : std_logic_vector(31 downto 0);
     trig_out_enable      : std_logic;
     eeprom_wrdata        : std_logic_vector(31 downto 0);
-end record pzed_parameters_type;
+end record cntrl_parameters_type;
  
 
 type eeprom_parameters_type is record
@@ -108,6 +108,32 @@ type pulse_stats_type is record
 end record pulse_stats_type;
 
 type pulse_stats_array is array(0 to 4) of pulse_stats_type;
+
+
+type i2c_regs_type is record
+   temp0 : std_logic_vector(15 downto 0);
+   temp1 : std_logic_vector(15 downto 0);
+   temp2 : std_logic_vector(15 downto 0);
+   temp3 : std_logic_vector(15 downto 0);
+   Vreg0 : std_logic_vector(15 downto 0);
+   Vreg1 : std_logic_vector(15 downto 0);
+   Vreg2 : std_logic_vector(15 downto 0);
+   Vreg3 : std_logic_vector(15 downto 0);
+   Vreg4 : std_logic_vector(15 downto 0);
+   Vreg5 : std_logic_vector(15 downto 0);
+   Vreg6 : std_logic_vector(15 downto 0);
+   Vreg7 : std_logic_vector(15 downto 0);
+   Ireg0 : std_logic_vector(15 downto 0);
+   Ireg1 : std_logic_vector(15 downto 0);
+   Ireg2 : std_logic_vector(15 downto 0);
+   Ireg3 : std_logic_vector(15 downto 0);
+   Ireg4 : std_logic_vector(15 downto 0);
+   Ireg5 : std_logic_vector(15 downto 0);
+   Ireg6 : std_logic_vector(15 downto 0);
+   Ireg7 : std_logic_vector(15 downto 0);
+end record i2c_regs_type;
+
+
 
 end acmi_package;
 

@@ -19,8 +19,7 @@ entity calc_beam_stats is
    adc_data_dly     : in signed(15 downto 0);
    gate_start       : in std_logic_vector(31 downto 0);
    adc_samplenum    : in std_logic_vector(31 downto 0);
-   pulse_stats      : out pulse_stats_type;
-   gate             : out std_logic
+   pulse_stats      : out pulse_stats_type
   );    
 end calc_beam_stats;
 

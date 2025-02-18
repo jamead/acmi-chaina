@@ -16,8 +16,8 @@ entity rx_backend_data is
    rst          : in std_logic; 
    acis_keylock : in std_logic;             
    gtp_rx_data  : in std_logic_vector(31 downto 0);
-   soft_trig    : out std_logic;
-   params       : out pzed_parameters_type           
+   trig         : out std_logic;
+   params       : out cntrl_parameters_type           
   );    
 end rx_backend_data;
 
@@ -105,7 +105,7 @@ decode_data: process(clk)
       --acis_keylock: 1=run mode, 0=edit mode
       elsif (sync_strb(2) = '0') and (sync_strb(1) = '1') then 
         case addr(7 downto 0) is
-          when x"00" =>   soft_trig                   <= data(0);
+          when x"00" =>   trig                        <= data(0);
           when x"40" =>   params.accum_reset          <= data(0); 
           when x"41" =>   params.trig_out_delay       <= data;
           when x"42" =>   params.trig_out_enable      <= data(0);
@@ -116,7 +116,7 @@ decode_data: process(clk)
           when others => null;
         end case;
       else
-        soft_trig <= '0';
+        trig <= '0';
         params.eeprom_trig <= '0';
         params.eeprom_readall <= '0';
       end if;

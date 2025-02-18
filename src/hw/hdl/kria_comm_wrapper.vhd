@@ -7,21 +7,23 @@ use UNISIM.VCOMPONENTS.ALL;
 
 
 entity kria_comm_wrapper is
-
+generic (
+  SIM_MODE             : integer := 0
+);
 port (
-    clk                        : in std_logic;
-    reset                      : in std_logic;
-    gtp_refclk_n               : in std_logic;
-    gtp_refclk_p               : in std_logic;
-    q0_clk0_refclk_out         : out std_logic;   
-    gtp_tx_data                : in std_logic_vector(31 downto 0);
-    gtp_tx_data_enb            : in std_logic;
-    gtp_rx_clk                 : out std_logic;
-    gtp_rx_data                : out std_logic_vector(31 downto 0);
-    RXN_IN                     : in std_logic;
-    RXP_IN                     : in std_logic;
-    TXN_OUT                    : out std_logic;
-    TXP_OUT                    : out std_logic
+  clk                  : in std_logic;
+  reset                : in std_logic;
+  gtp_refclk_n         : in std_logic;
+  gtp_refclk_p         : in std_logic;
+  q0_clk0_refclk_out   : out std_logic;   
+  gtp_tx_data          : in std_logic_vector(31 downto 0);
+  gtp_tx_data_enb      : in std_logic;
+  gtp_rx_clk           : out std_logic;
+  gtp_rx_data          : out std_logic_vector(31 downto 0);
+  RXN_IN               : in std_logic;
+  RXP_IN               : in std_logic;
+  TXN_OUT              : out std_logic;
+  TXP_OUT              : out std_logic
 );
 end kria_comm_wrapper;
     
@@ -95,26 +97,44 @@ END COMPONENT;
 begin
 
 
---test_gth:  entity work.gen_testdata
---  port map ( 
---	clk => gt0_txusrclk2_i, 
---    rst => reset, 
---    gth_tx_enb => '1', 
---    gth_data => gth_data, 
---    gth_data_enb => gth_data_enb 	
---);
 
 
---gt0_txdata_i(7 downto 0) <= x"BC" when (gth_data_enb = '0') else gth_data(7 downto 0);
---gt0_txdata_i(31 downto 8) <= x"505152" when (gth_data_enb = '0') else gth_data(31 downto 8);
-
---gt0_txcharisk_i <= x"1" when (gth_data_enb = '0') else x"0";
-
-
+adcdata_syn: if (SIM_MODE = 0) generate  
+  gtp_rx_clk <= gt0_rxusrclk2_i;
+  gtp_rx_data <= rx_data;
+end generate;
 
 
-gtp_rx_data <= rx_data;
-gtp_rx_clk <= gt0_rxusrclk2_i;
+adcdata_sim: if (SIM_MODE = 1) generate 
+  process
+    begin 
+      gtp_rx_clk <= '1';
+      wait for 15.625 ns;
+      gtp_rx_clk <= '0'; 
+      wait for 15.625 ns;
+  end process;
+
+
+  process (gtp_rx_clk)
+    variable cnt : unsigned(31 downto 0) := 32d"0";
+    begin
+      if rising_edge(gtp_rx_clk) then
+        cnt := cnt + 1;
+        gtp_rx_data <= 32d"0"; 
+        if (cnt = 2700) then
+          gtp_rx_data <= x"ba5eba11";
+        elsif (cnt = 2701) then
+          gtp_rx_data <= 32d"0";
+        elsif (cnt = 2702) then
+          gtp_rx_data <= 32d"1";       
+          cnt := 32d"0";
+        end if;
+      end if;
+  end process;
+ 
+end generate;
+
+
 
 
 send_kria_fifo : tx_data_fifo

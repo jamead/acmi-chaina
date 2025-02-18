@@ -16,7 +16,7 @@ proc setSources {} {
 
   variable Sources 
 
-  
+  lappend Sources {"../hdl/top_tb.vhd" "VHDL 2008"}
   lappend Sources {"../hdl/top.vhd" "VHDL 2008"} 
   lappend Sources {"../hdl/acmi_package.vhd" "VHDL 2008"} 
   lappend Sources {"../hdl/pwronreset.vhd" "VHDL 2008"} 
@@ -28,7 +28,7 @@ proc setSources {} {
   lappend Sources {"../hdl/gen_test_pulses.vhd" "VHDL 2008"}  
   lappend Sources {"../hdl/gen_timestamp.vhd" "VHDL 2008"}  
   lappend Sources {"../hdl/gen_timing_events.vhd" "VHDL 2008"}     
-  lappend Sources {"../hdl/gen_trig_pulse.vhd" "VHDL 2008"}   
+  #lappend Sources {"../hdl/gen_trig_pulse.vhd" "VHDL 2008"}   
   lappend Sources {"../hdl/gen_window.vhd" "VHDL 2008"}   
   lappend Sources {"../hdl/beam_detect_window.vhd" "VHDL 2008"}  
   lappend Sources {"../hdl/pulse_gen.vhd" "VHDL 2008"}   
@@ -44,6 +44,8 @@ proc setSources {} {
   lappend Sources {"../hdl/gen_gate.vhd" "VHDL 2008"} 
   
   lappend Sources {"../hdl/accumulator.vhd" "VHDL 2008"}  
+  
+  lappend Sources {"../hdl/i2c_monitors.vhd" "VHDL 2008"}
   
   lappend Sources {"../hdl/rx_backend_data.vhd" "VHDL 2008"} 
   lappend Sources {"../hdl/tx_backend_data.vhd" "VHDL 2008"}  
@@ -118,8 +120,9 @@ proc doOnCreate {} {
   ::fwfwk::printCBM "TclPath = ${TclPath}"
   ::fwfwk::printCBM "SrcPath = ${::fwfwk::SrcPath}"
   
-  #set_property used_in_synthesis false [get_files ${::fwfwk::SrcPath}/hw/hdl/crc_tb.sv] 
-  #set_property used_in_implementation false [get_files ${::fwfwk::SrcPath}/hw/hdl/crc_tb.sv] 
+  #set_property used_in_synthesis false [get_files ${::fwfwk::SrcPath}/hw/hdl/top_tb.vhd] 
+  #set_property used_in_implementation false [get_files ${::fwfwk::SrcPath}/hw/hdl/top_tb.vhd] 
+  set_property USED_IN simulation [get_files ${::fwfwk::SrcPath}/hw/hdl/top_tb.vhd]
   
   #open_wave_config "${::fwfwk::SrcPath}/hw/sim/top_tb_behav.wcfg"
   

@@ -17,13 +17,14 @@ generic (
     SIM_MODE            : integer := 0
   );
   port (
-   reset  	   : in  std_logic;                     
+   reset  	   : in std_logic; 
+   trig        : in std_logic;                    
    sclk        : out std_logic;                   
    din 	       : out std_logic;
-   dout        : in  std_logic;
+   dout        : in std_logic;
    sync        : out std_logic;          
-   adc_clk_p   : in  std_logic;                  
-   adc_clk_n   : in  std_logic;                     
+   adc_clk_p   : in std_logic;                  
+   adc_clk_n   : in std_logic;                     
    adc_data_p  : in std_logic_vector(7 downto 0);
    adc_data_n  : in std_logic_vector(7 downto 0); 
    adc_of_p    : in std_logic;
@@ -63,6 +64,7 @@ read_adc: entity work.read_ltc2107
     adc_clk_p => adc_clk_p,
     adc_clk_n => adc_clk_n,
     reset => reset,
+    trig => trig,
     adc_data_p => adc_data_p,
     adc_data_n => adc_data_n,
     adc_of_p => adc_of_p,

@@ -3,7 +3,7 @@
 library IEEE;
 use ieee.std_logic_1164.all; 
 use ieee.numeric_std.all; 
-use ieee.std_logic_unsigned.all;
+--use ieee.std_logic_unsigned.all;
 
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
@@ -77,6 +77,10 @@ generic(
     eeprom_holdn            : out std_logic;
     eeprom_sdo              : in std_logic;
     
+    --i2c (temp, power)     
+    i2c_scl                 : out std_logic;
+    i2c_sda                 : inout std_logic;
+    
     keylock_detect_led      : out std_logic;
         
     dbg                     : out std_logic_vector(9 downto 0);
@@ -99,8 +103,6 @@ architecture behv of top is
   signal spi_xfer           : std_logic;
   signal spi_xfer_stretch   : std_logic;
   
-  signal soft_trig          : std_logic;
-  
   signal beam_detect_window : std_logic;
   signal beam_cycle_window  : std_logic;
   
@@ -109,10 +111,11 @@ architecture behv of top is
   signal startup_cnt        : std_logic_vector(31 downto 0);
   
   signal pulse_stats        : pulse_stats_array;
-  signal pzed_params        : pzed_parameters_type;
+  signal cntrl_params       : cntrl_parameters_type;
   signal eeprom_params      : eeprom_parameters_type;
   signal eeprom_data        : eeprom_data_type;
   signal eeprom_rdy         : std_logic;
+  signal fiber_trig         : std_logic;
   signal trig               : std_logic;
   signal ext_trig           : std_logic;
   signal trig_stretch       : std_logic;
@@ -124,7 +127,6 @@ architecture behv of top is
   signal timestamp          : std_logic_vector(31 downto 0);
   signal accum              : std_logic_vector(31 downto 0);
   signal charge_oow         : std_logic_vector(31 downto 0);
-  signal accum_update       : std_logic;
 
   signal dac_data           : std_logic_vector(15 downto 0);
   signal acis_readbacks     : std_logic_vector(7 downto 0);
@@ -142,13 +144,15 @@ architecture behv of top is
   signal gtp_tx_data        : std_logic_vector(31 downto 0);
   signal gtp_tx_data_enb    : std_logic;
   signal gtp_tx_clk         : std_logic;
+  
+  signal i2c_regs           : i2c_regs_type;
 
  
    --debug signals (connect to ila)
    attribute mark_debug                 : string;
    attribute mark_debug of adc_data: signal is "true";  
    attribute mark_debug of dac_data: signal is "true";      
-   attribute mark_debug of soft_trig: signal is "true"; 
+   attribute mark_debug of fiber_trig: signal is "true"; 
 --   attribute mark_debug of tp_pulse: signal is "true";
 --   attribute mark_debug of ext_trig: signal is "true";
 --   attribute mark_debug of trig: signal is "true"; 
@@ -215,25 +219,37 @@ debounce_acis_reset: entity work.debounce
   port map (
     clk => adc_clk,
     reset => reset,
-    button => acis_reset,
-    result => acis_reset_debounced
+    switch => acis_reset,
+    clean => acis_reset_debounced
 );
   
 debounce_acis_force_trip: entity work.debounce
   port map (
     clk => adc_clk,
     reset => reset,
-    button => acis_force_trip,
-    result => acis_force_trip_debounced
+    switch => acis_force_trip,
+    clean => acis_force_trip_debounced
 );  
   
 debounce_acis_keylock: entity work.debounce
   port map (
     clk => adc_clk,
     reset => reset,
-    button => acis_keylock,
-    result => acis_keylock_debounced
+    switch => acis_keylock,
+    clean => acis_keylock_debounced
 );    
+  
+  
+i2c_read : entity work.i2c_monitors
+  port map(
+	clock => adc_clk,  
+	reset => reset, 
+	scl => i2c_scl, 
+	sda => i2c_sda,
+	registers => i2c_regs  
+);      
+  
+  
   
 
 timing: entity work.gen_timing_events
@@ -241,19 +257,15 @@ timing: entity work.gen_timing_events
     clk => adc_clk,
     reset => reset,
     eeprom_rdy => eeprom_rdy,
-    soft_trig => soft_trig,
-    fiber_trig_in => '0', --fiber_trig_in,
+    trig=> trig, 
     eeprom_params => eeprom_params, 
-    pzed_params => pzed_params,
+    cntrl_params => cntrl_params,
     acis_keylock => acis_keylock_debounced,    
-    trig_out => trig,
-    accum_update => accum_update,
     beam_detect_window => beam_detect_window,
     beam_cycle_window => beam_cycle_window,
     adc_samplenum => adc_samplenum,
     tp_pos_pulse => tp_pos_pulse,
     tp_neg_pulse => tp_neg_pulse,
-    fiber_trig_fp => open, --fiber_trig_fp,
     timestamp => timestamp,
     watchdog_clock => watchdog_clock,
     watchdog_pulse => watchdog_pulse,
@@ -300,6 +312,7 @@ adc : entity work.adc_interface
   )
   port map (
     reset => reset,
+    trig => trig,
     sclk => adc_spi_sck,                    
     din => adc_spi_sdi, 
     dout => adc_spi_sdo, 
@@ -337,11 +350,10 @@ calc_q: entity work.calc_charge
 boxcar: entity work.accumulator
   port map(
     clk => adc_clk, 
-    rst => pzed_params.accum_reset, 
+    rst => reset, --cntrl_params.accum_reset, 
     faultn => acis_faultn,
     accum_len => eeprom_params.accum_length(12 downto 0),
     beam_detect_window => beam_detect_window, 
-    accum_update => accum_update,
     q_min => eeprom_params.accum_q_min,
     sample => pulse_stats(0).integral,
     charge_oow => charge_oow,
@@ -358,8 +370,8 @@ spi_comm: entity work.rx_backend_data
     rst => reset,    
     acis_keylock => acis_keylock_debounced,             
     gtp_rx_data => gtp_rx_data,
-    soft_trig => soft_trig,
-    params => pzed_params              
+    trig => trig, 
+    params => cntrl_params              
  );    
 
 
@@ -392,6 +404,9 @@ send_results: entity work.tx_backend_data
 
 -- GTP transceiver for fiber communication
 backend_gtp: entity work.kria_comm_wrapper
+  generic map (
+    SIM_MODE => SIM_MODE
+  )
   port map(
     clk => adc_clk,
     reset => reset, 
@@ -419,7 +434,7 @@ eeprom: entity work.eeprom_interface
   port map(
     clk => adc_clk,                   
     reset => reset,  
-    pzed_params => pzed_params,                            
+    cntrl_params => cntrl_params,                            
     eeprom_params => eeprom_params,
     acis_keylock => acis_keylock_debounced,
     sclk => eeprom_sck,                    

@@ -17,7 +17,7 @@ entity eeprom_interface is
   port (
    clk              : in std_logic;                  
    reset  	        : in std_logic; 
-   pzed_params      : in pzed_parameters_type;
+   cntrl_params     : in cntrl_parameters_type;
    eeprom_params    : out eeprom_parameters_type; 
    acis_keylock     : in std_logic;          
    sclk             : out std_logic;                   
@@ -90,16 +90,17 @@ eeprom_rdy <= read_eeprom_done;
 
 
 eeprom_sim: if (SIM_MODE = 1) generate eeprom_sim_settings:
-  eeprom_params.tp1_pulse_delay      <= 32d"3300";
+  eeprom_params.header               <= x"0000beef";
+  eeprom_params.tp1_pulse_delay      <= 32d"4000";
   eeprom_params.tp1_pulse_width      <= 32d"8";
-  eeprom_params.tp1_adc_delay        <= 32d"3290";
-  eeprom_params.tp2_pulse_delay      <= 32d"3900";
+  eeprom_params.tp1_adc_delay        <= 32d"4073";
+  eeprom_params.tp2_pulse_delay      <= 32d"6000";
   eeprom_params.tp2_pulse_width      <= 32d"3";
-  eeprom_params.tp2_adc_delay        <= 32d"3890";
-  eeprom_params.tp3_pulse_delay      <= 32d"4500";
+  eeprom_params.tp2_adc_delay        <= 32d"6073";
+  eeprom_params.tp3_pulse_delay      <= 32d"8000";
   eeprom_params.tp3_pulse_width      <= 32d"2";   
-  eeprom_params.tp3_adc_delay        <= 32d"4480";      
-  eeprom_params.beam_adc_delay       <= 32d"720";
+  eeprom_params.tp3_adc_delay        <= 32d"8073";      
+  eeprom_params.beam_adc_delay       <= 32d"215";
   eeprom_params.beam_oow_threshold   <= std_logic_vector(to_signed(150,16));
   eeprom_params.tp1_int_low_limit    <= 32d"21000";
   eeprom_params.tp1_int_high_limit   <= 32d"22000";
@@ -125,14 +126,20 @@ eeprom_sim: if (SIM_MODE = 1) generate eeprom_sim_settings:
   eeprom_params.tp2_base_high_limit  <= 32d"300";
   eeprom_params.tp3_base_low_limit   <= std_logic_vector(to_signed(-300,32));
   eeprom_params.tp3_base_high_limit  <= 32d"300";
+  eeprom_params.tp1_pos_level        <= 32d"10";
+  eeprom_params.tp2_pos_level        <= 32d"0";
+  eeprom_params.tp3_pos_level        <= 32d"0"; 
+  eeprom_params.tp1_neg_level        <= 32d"0";
+  eeprom_params.tp2_neg_level        <= 32d"11";
+  eeprom_params.tp3_neg_level        <= 32d"12";
   eeprom_params.beamaccum_limit_hr   <= 32d"100000";
   eeprom_params.beamhigh_limit       <= std_logic_vector(to_signed(250000,32));
   eeprom_params.baseline_low_limit   <= std_logic_vector(to_signed(-300,32));
   eeprom_params.baseline_high_limit  <= 32d"300";
   eeprom_params.charge_calibration   <= 32d"14000";
-  eeprom_params.accum_q_min          <= 32d"10000";
+  eeprom_params.accum_q_min          <= 32d"0";
   --eeprom_params.startup_delay        <= 32d"1800";
-  eeprom_params.accum_length         <= 32d"3600"; 
+  eeprom_params.accum_length         <= 32d"10"; 
   eeprom_params.crc32_eeprom         <= x"01234567";
 end generate;
 
@@ -247,13 +254,13 @@ process (clk)
             reset_prev <= reset;
             acis_keylock_prev <= acis_keylock;
             -- single transaction requested from picoZed (for writing eeprom)
-            if (pzed_params.eeprom_trig = '1') then
-              command <= pzed_params.eeprom_wrdata;
-              trig <= pzed_params.eeprom_trig;
+            if (cntrl_params.eeprom_trig = '1') then
+              command <= cntrl_params.eeprom_wrdata;
+              trig <= cntrl_params.eeprom_trig;
           
             --read all eeprom settings on readall, powerup or keylock going to run mode
             --acis_keylock: 1=run mode, 0=edit mode
-            elsif ((pzed_params.eeprom_readall = '1') or (reset_prev = '1' and reset = '0') or 
+            elsif ((cntrl_params.eeprom_readall = '1') or (reset_prev = '1' and reset = '0') or 
                   (reset = '0' and reset_prev = '0' and acis_keylock = '1' and acis_keylock_prev = '0')) then
               crc_rst <= '1';
               state <= read_eeprom;

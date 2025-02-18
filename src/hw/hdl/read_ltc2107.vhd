@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 --use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
-
+use ieee.std_logic_textio.all;
 use std.textio.all;
 
 library UNISIM;
@@ -17,7 +17,8 @@ entity read_ltc2107 is
   port (
    adc_clk_p   : in  std_logic;                  
    adc_clk_n   : in  std_logic;
-   reset       : in std_logic;                     
+   reset       : in std_logic;  
+   trig        : in std_logic;                   
    adc_data_p  : in std_logic_vector(7 downto 0);
    adc_data_n  : in std_logic_vector(7 downto 0); 
    adc_of_p    : in std_logic;
@@ -130,19 +131,28 @@ end generate;
 
 
 adcdata_sim: if (SIM_MODE = 1) generate read_adc_data: 
+
+
+
+
   process(adc_clk)
-    file adc_vector   : text open read_mode is "/home/mead/kria/firmware/acmi_artix_v2/sim/joe_cow_testdata.txt";   
+    constant ADC_DATA_FILE : string := "/home/mead/acmi/fwk/acmi-chaina/src/hw/sim/acmi_adc_data.txt";
+    file adc_vector   : text open read_mode is ADC_DATA_FILE; --"/home/mead/acmi/fwk/acmi-chaina/src/hw/sim/acmi_adc_data.txt";   
     variable row       : line;
     variable adc_raw  : integer;
 
     --variable sampnum   : integer;
   
     begin
-      if (rising_edge(adc_clk))  then
+      if rising_edge(adc_clk)  then
         sample_cnt <= sample_cnt + 1;
-        if (sample_cnt > 10000) and (sample_cnt < 26000) then
+        if (trig = '1') then
+          file_close(adc_vector);
+          file_open(adc_vector,ADC_DATA_FILE,read_mode);
+          sample_cnt <= 0;
+        end if;
+        if (sample_cnt < 16000) then
            readline(adc_vector,row);
-           --read(row,sampnum);
            read(row,adc_raw);
            adc_data <= x"8000" xor std_logic_vector(to_signed(adc_raw,16)); 
         else

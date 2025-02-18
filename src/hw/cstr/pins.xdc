@@ -80,6 +80,17 @@ set_property PACKAGE_PIN AA16 [get_ports adc_spi_sdo]
 set_property IOSTANDARD LVCMOS33 [get_ports adc_spi_sdo]
 set_property PULLUP true [get_ports adc_spi_sdo]
 
+#i2c interface
+set_property PACKAGE_PIN B20 [get_ports i2c_scl]
+set_property IOSTANDARD LVCMOS33 [get_ports i2c_scl]
+set_property DRIVE 12 [get_ports i2c_scl]
+set_property SLEW SLOW [get_ports i2c_scl]
+
+set_property PACKAGE_PIN A20 [get_ports i2c_sda]
+set_property IOSTANDARD LVCMOS33 [get_ports i2c_sda]
+set_property DRIVE 12 [get_ports i2c_sda]
+set_property SLEW SLOW [get_ports i2c_sda]
+
 
 # trigger outputs
 set_property PACKAGE_PIN N17 [get_ports fiber_trig_watchdog]
@@ -683,6 +694,7 @@ set_property IOSTANDARD LVCMOS33 [get_ports acis_force_trip]
 #acis_keylock
 set_property PACKAGE_PIN N15 [get_ports acis_keylock]
 set_property IOSTANDARD LVCMOS33 [get_ports acis_keylock]
+
 
 
 
