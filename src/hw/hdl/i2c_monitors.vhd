@@ -33,7 +33,7 @@ package i2c_types is
     constant ina226_cal : std_logic_vector(27 downto 0) := '1' & x"05" & '1' & x"08" & '1' & x"00" & '1';
     constant ina226_Vreg : std_logic_vector(9 downto 0) := '1' & x"02" & '1';
     constant ina226_Ireg : std_logic_vector(9 downto 0) := '1' & x"04" & '1';
-    constant ARRAY_SIZE : integer := 61;
+    constant ARRAY_SIZE : integer := 13; --61;
     constant DATA_SIZE  : integer := 36;
     type data_type is array(0 to ARRAY_SIZE-1) of std_logic_vector(DATA_SIZE-1 downto 0);
     type size_type is array(0 to ARRAY_SIZE-1) of integer range 0 to 63;
@@ -59,78 +59,81 @@ entity i2c_monitors is
                  -- originally written for 4 adt and 8 ina chips
         i2c_data : data_type := ((others => '0'), --zero pad makes math easier
                                  nine_pad & x"90" & adt7410_config, 
-                                 nine_pad & x"92" & adt7410_config,
+                                 --nine_pad & x"92" & adt7410_config,
                                  nine_pad & x"94" & adt7410_config, 
-                                 nine_pad & x"96" & adt7410_config, -- adt7410 config 27 bit
+                                 --nine_pad & x"96" & adt7410_config, -- adt7410 config 27 bit
                                  nine_pad & x"90" & adt7410_pntr, 
-                                 nine_pad & x"92" & adt7410_pntr,
+                                 --nine_pad & x"92" & adt7410_pntr,
                                  nine_pad & x"94" & adt7410_pntr, 
-                                 nine_pad & x"96" & adt7410_pntr, -- adt7410 address pointer 27 bit
+                                 --nine_pad & x"96" & adt7410_pntr, -- adt7410 address pointer 27 bit
                                  x"80" & ina226_config, 
-                                 x"82" & ina226_config, 
-                                 x"84" & ina226_config, 
-                                 x"86" & ina226_config, 
-                                 x"88" & ina226_config, 
-                                 x"8a" & ina226_config, 
-                                 x"8c" & ina226_config, 
-                                 x"8e" & ina226_config, -- ina226 config 36 bit
+                                 --x"82" & ina226_config, 
+                                 --x"84" & ina226_config, 
+                                 --x"86" & ina226_config, 
+                                 --x"88" & ina226_config, 
+                                 --x"8a" & ina226_config, 
+                                 --x"8c" & ina226_config, 
+                                 --x"8e" & ina226_config, -- ina226 config 36 bit
                                  x"80" & ina226_cal, 
-                                 x"82" & ina226_cal,
-                                 x"84" & ina226_cal, 
-                                 x"86" & ina226_cal, 
-                                 x"88" & ina226_cal, 
-                                 x"8a" & ina226_cal, 
-                                 x"8c" & ina226_cal,
-                                 x"8e" & ina226_cal, -- ina226 calibration 36 bit
+                                 --x"82" & ina226_cal,
+                                 --x"84" & ina226_cal, 
+                                 --x"86" & ina226_cal, 
+                                 --x"88" & ina226_cal, 
+                                 --x"8a" & ina226_cal, 
+                                 --x"8c" & ina226_cal,
+                                 --x"8e" & ina226_cal, -- ina226 calibration 36 bit
                                  nine_pad & x"91" & read_word, 
-                                 nine_pad & x"93" & read_word,
+                                 --nine_pad & x"93" & read_word,
                                  nine_pad & x"95" & read_word, 
-                                 nine_pad & x"97" & read_word, -- adt7410 read 27 bit
+                                 --nine_pad & x"97" & read_word, -- adt7410 read 27 bit
                                  eighteen_pad & x"80" & ina226_Vreg, 
-                                 eighteen_pad & x"82" & ina226_Vreg,
-                                 eighteen_pad & x"84" & ina226_Vreg, 
-                                 eighteen_pad & x"86" & ina226_Vreg, 
-                                 eighteen_pad & x"88" & ina226_Vreg, 
-                                 eighteen_pad & x"8a" & ina226_Vreg, 
-                                 eighteen_pad & x"8c" & ina226_Vreg,
-                                 eighteen_pad & x"8e" & ina226_Vreg, -- ina226 set to read Vreg 18 bit
+                                 --eighteen_pad & x"82" & ina226_Vreg,
+                                 --eighteen_pad & x"84" & ina226_Vreg, 
+                                 --eighteen_pad & x"86" & ina226_Vreg, 
+                                 --eighteen_pad & x"88" & ina226_Vreg, 
+                                 --eighteen_pad & x"8a" & ina226_Vreg, 
+                                 --eighteen_pad & x"8c" & ina226_Vreg,
+                                 --eighteen_pad & x"8e" & ina226_Vreg, -- ina226 set to read Vreg 18 bit
                                  nine_pad & x"81" & read_word, 
-                                 nine_pad & x"83" & read_word, 
-                                 nine_pad & x"85" & read_word, 
-                                 nine_pad & x"87" & read_word, 
-                                 nine_pad & x"89" & read_word, 
-                                 nine_pad & x"8b" & read_word, 
-                                 nine_pad & x"8d" & read_word, 
-                                 nine_pad & x"8f" & read_word, -- ina226 read Vreg 27 bit
+                                 --nine_pad & x"83" & read_word, 
+                                 --nine_pad & x"85" & read_word, 
+                                 --nine_pad & x"87" & read_word, 
+                                 --nine_pad & x"89" & read_word, 
+                                 --nine_pad & x"8b" & read_word, 
+                                 --nine_pad & x"8d" & read_word, 
+                                 --nine_pad & x"8f" & read_word, -- ina226 read Vreg 27 bit
                                  eighteen_pad & x"80" & ina226_Ireg, 
-                                 eighteen_pad & x"82" & ina226_Ireg,
-                                 eighteen_pad & x"84" & ina226_Ireg, 
-                                 eighteen_pad & x"86" & ina226_Ireg, 
-                                 eighteen_pad & x"88" & ina226_Ireg, 
-                                 eighteen_pad & x"8a" & ina226_Ireg, 
-                                 eighteen_pad & x"8c" & ina226_Ireg, 
-                                 eighteen_pad & x"8e" & ina226_Ireg, -- ina226 set to read Ireg 18 bit
-                                 nine_pad & x"81" & read_word, 
-                                 nine_pad & x"83" & read_word, 
-                                 nine_pad & x"85" & read_word, 
-                                 nine_pad & x"87" & read_word, 
-                                 nine_pad & x"89" & read_word, 
-                                 nine_pad & x"8b" & read_word, 
-                                 nine_pad & x"8d" & read_word, 
-                                 nine_pad & x"8f" & read_word -- ina226 read Ireg 27 bit
+                                 --eighteen_pad & x"82" & ina226_Ireg,
+                                 --eighteen_pad & x"84" & ina226_Ireg, 
+                                 --eighteen_pad & x"86" & ina226_Ireg, 
+                                 --eighteen_pad & x"88" & ina226_Ireg, 
+                                 --eighteen_pad & x"8a" & ina226_Ireg, 
+                                 --eighteen_pad & x"8c" & ina226_Ireg, 
+                                 --eighteen_pad & x"8e" & ina226_Ireg, -- ina226 set to read Ireg 18 bit
+                                 nine_pad & x"81" & read_word 
+                                 --nine_pad & x"83" & read_word, 
+                                 --nine_pad & x"85" & read_word, 
+                                 --nine_pad & x"87" & read_word, 
+                                 --nine_pad & x"89" & read_word, 
+                                 --nine_pad & x"8b" & read_word, 
+                                 --nine_pad & x"8d" & read_word, 
+                                 --nine_pad & x"8f" & read_word -- ina226 read Ireg 27 bit
                                  
                                  );
                  -- this tells the i2c process how many bits to send
         i2c_size : size_type := (0, -- zero pad makes math easier
-                                 27,27,27,27, -- adt7410 config 27 bit
-                                 27,27,27,27, -- adt7410 address pointer 27 bit
-                                 36,36,36,36,36,36,36,36, -- ina226 config 36 bit
-                                 36,36,36,36,36,36,36,36, -- ina226 cal 36 bit
-                                 27,27,27,27, -- adt7410 read 27 bit
-                                 18,18,18,18,18,18,18,18, -- ina226 Vreg 18 bit
-                                 27,27,27,27,27,27,27,27, -- ina226 read 27 bit         
-                                 18,18,18,18,18,18,18,18, -- ina226 Ireg 18 bit
-                                 27,27,27,27,27,27,27,27) -- ina226 read 27 bit                          
+                                 27, -- adt7410 config 27 bit
+                                 27,
+                                 27, -- adt7410 address pointer 27 bit
+                                 27,
+                                 36, -- ina226 config 36 bit
+                                 36, -- ina226 cal 36 bit
+                                 27, -- adt7410 read 27 bit
+                                 27,
+                                 18, -- ina226 Vreg 18 bit
+                                 27, -- ina226 read 27 bit         
+                                 18, -- ina226 Ireg 18 bit
+                                 27) -- ina226 read 27 bit                          
                                  );
             
     port ( 
@@ -246,7 +249,7 @@ begin
                     pausecnt <= 24d"0";
                 when CONFIG =>
                     if (i2c_trig = '0') then
-                        if step_count < 24 then
+                        if step_count < 6 then
                             treg <= i2c_data(step_count);
                             bcnt <= i2c_size(step_count);
                             step_count <= step_count + 1;
@@ -265,52 +268,20 @@ begin
                     
                 when READ =>
                     if i2c_trig = '0' then
-                        if (step_count < 61) then
+                        if (step_count < 13) then
                             case step_count is -- use step count to choose register to update
-                                when 25 =>
+                                when 7 =>
                                     registers.temp0 <= rreg (17 downto 10) & rreg(8 downto 1); 
-                                when 26 =>
+                                when 8 =>
                                     registers.temp1 <= rreg (17 downto 10) & rreg(8 downto 1); 
-                                when 27 =>
-                                    registers.temp2 <= rreg (17 downto 10) & rreg(8 downto 1); 
-                                when 28 =>
-                                    registers.temp3 <= rreg (17 downto 10) & rreg(8 downto 1); 
-                                when 37 =>
+                                when 10 =>
                                     registers.Vreg0 <= rreg (17 downto 10) & rreg(8 downto 1); 
-                                when 38 =>
-                                    registers.Vreg1 <= rreg (17 downto 10) & rreg(8 downto 1);
-                                when 39 =>
-                                    registers.Vreg2 <= rreg (17 downto 10) & rreg(8 downto 1); 
-                                when 40 =>
-                                    registers.Vreg3 <= rreg (17 downto 10) & rreg(8 downto 1);
-                                when 41 =>
-                                    registers.Vreg4 <= rreg (17 downto 10) & rreg(8 downto 1); 
-                                when 42 =>
-                                    registers.Vreg5 <= rreg (17 downto 10) & rreg(8 downto 1);
-                                when 43 =>
-                                    registers.Vreg6 <= rreg (17 downto 10) & rreg(8 downto 1); 
-                                when 44 =>
-                                    registers.Vreg7 <= rreg (17 downto 10) & rreg(8 downto 1);
-                                when 53 =>
+                                when 12 =>
                                     registers.Ireg0 <= rreg (17 downto 10) & rreg(8 downto 1); 
-                                when 54 =>
-                                    registers.Ireg1 <= rreg (17 downto 10) & rreg(8 downto 1);
-                                when 55 =>
-                                    registers.Ireg2 <= rreg (17 downto 10) & rreg(8 downto 1); 
-                                when 56 =>
-                                    registers.Ireg3 <= rreg (17 downto 10) & rreg(8 downto 1);
-                                when 57 =>
-                                    registers.Ireg4 <= rreg (17 downto 10) & rreg(8 downto 1); 
-                                when 58 =>
-                                    registers.Ireg5 <= rreg (17 downto 10) & rreg(8 downto 1);
-                                when 59 =>
-                                    registers.Ireg6 <= rreg (17 downto 10) & rreg(8 downto 1); 
-                                when 60 =>
-                                    registers.Ireg7 <= rreg (17 downto 10) & rreg(8 downto 1);
                                 when others =>
                                     null;
                             end case;
-                            if (step_count /= 60) then
+                            if (step_count /= 12) then
                                 treg <= i2c_data(step_count + 1); 
                                 bcnt <= i2c_size(step_count + 1);
                                 step_count <= step_count + 1;
