@@ -8,11 +8,12 @@ set _xlnx_shared_i0 [all_registers]
 set_false_path -from [get_pins -hierarchical *reset*] -to $_xlnx_shared_i0
 
 set_false_path -from [get_pins -hierarchical *accum_len*] -to $_xlnx_shared_i0
-set_false_path -from [get_pins -hierarchical *accum_limit_t*] -to $_xlnx_shared_i0
+set_false_path -from [get_pins -hierarchical *accum_limit_t*] -to [all_registers]
 set_false_path -from [get_pins -hierarchical *accum_limit_hr*] -to $_xlnx_shared_i0
 
 #set_property CONFIG_MODE SPIx4 [current_design]
 set_property BITSTREAM.CONFIG.SPI_BUSWIDTH 4 [current_design]
+
 
 
 

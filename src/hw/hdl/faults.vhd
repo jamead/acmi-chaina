@@ -150,7 +150,8 @@ begin
       if (prev_beam_cycle_window = '1' and beam_cycle_window = '0') then
         
         -- beam accum limit check
-        if (accum > params.beamaccum_limit_calc) then
+        --if (accum > params.beamaccum_limit_calc) then
+        if (accum > params.beamaccum_limit_hr) then 
           fault_bunch_limit <= '1';
         else
           fault_bunch_limit <= '0';
@@ -232,7 +233,8 @@ begin
    
         
         -- bad limit, compares crc calculated in fpga vs what is in eeprom
-        if ((params.crc32_eeprom /= params.crc32_calc) and acis_keylock = '1') then
+        --if ((params.crc32_eeprom /= params.crc32_calc) and acis_keylock = '1') then
+        if (params.crc32_eeprom /= params.crc32_calc) then
           fault_bad_limit <= '1';
         else 
           fault_bad_limit <= '0';

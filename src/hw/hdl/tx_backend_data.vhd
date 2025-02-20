@@ -209,7 +209,7 @@ process (clk)
              -- counter since power up
              when 34  =>  tx_data   <= startup_cnt;
              -- beamaccum limit
-             when 35  =>  tx_data   <= eeprom_params.beamaccum_limit_calc;           
+             when 35  =>  tx_data   <= 32d"0"; --eeprom_params.beamaccum_limit_calc;           
              --reserved placeholder
              when 36 to 62 => tx_data <= 32d"0";
              when 63 =>   tx_data    <= x"deadbeef";

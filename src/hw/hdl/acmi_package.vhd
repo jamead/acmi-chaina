@@ -92,7 +92,7 @@ type eeprom_parameters_type is record
     accum_length             : std_logic_vector(31 downto 0);  
     crc32_eeprom             : std_logic_vector(31 downto 0);
     crc32_calc               : std_logic_vector(31 downto 0); 
-    beamaccum_limit_calc     : std_logic_vector(31 downto 0);             
+    --beamaccum_limit_calc     : std_logic_vector(31 downto 0);             
 end record eeprom_parameters_type;
 
 

@@ -115,15 +115,14 @@ architecture behv of top is
   signal eeprom_params      : eeprom_parameters_type;
   signal eeprom_data        : eeprom_data_type;
   signal eeprom_rdy         : std_logic;
-  signal fiber_trig         : std_logic;
+  --signal fiber_trig         : std_logic;
   signal trig               : std_logic;
   signal ext_trig           : std_logic;
   signal trig_stretch       : std_logic;
+  signal fp_trig_dly_out    : std_logic;
   
   signal beam_pulse_detect  : std_logic;
-  signal trig_out_delay     : std_logic_vector(31 downto 0);
-  signal trig_out_enable    : std_logic;
-  
+   
   signal timestamp          : std_logic_vector(31 downto 0);
   signal accum              : std_logic_vector(31 downto 0);
   signal charge_oow         : std_logic_vector(31 downto 0);
@@ -152,7 +151,7 @@ architecture behv of top is
    attribute mark_debug                 : string;
    attribute mark_debug of adc_data: signal is "true";  
    attribute mark_debug of dac_data: signal is "true";      
-   attribute mark_debug of fiber_trig: signal is "true"; 
+
 --   attribute mark_debug of tp_pulse: signal is "true";
 --   attribute mark_debug of ext_trig: signal is "true";
 --   attribute mark_debug of trig: signal is "true"; 
@@ -193,7 +192,7 @@ dbg_leds(3) <= spi_xfer_stretch;
 
 
 
-fiber_trig_fp <= trig; 
+fiber_trig_fp <= fp_trig_dly_out; --trig; 
 fiber_trig_watchdog <= trig;
 
 --inverter on LED drivers
@@ -270,7 +269,8 @@ timing: entity work.gen_timing_events
     watchdog_clock => watchdog_clock,
     watchdog_pulse => watchdog_pulse,
     startup_cnt => startup_cnt, 
-    fault_startup => fault_startup   
+    fault_startup => fault_startup,
+    fp_trig_dly_out => fp_trig_dly_out   
     
  );
 

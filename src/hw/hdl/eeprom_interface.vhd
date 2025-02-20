@@ -216,7 +216,7 @@ begin
      accum_len <= eeprom_params.accum_length;
      accum_limit_t <= accum_limit_hr * accum_len;
      accum_limit_f <= accum_limit_t * 32d"596523";
-     eeprom_params.beamaccum_limit_calc <= accum_limit_f(63 downto 32);
+     --eeprom_params.beamaccum_limit_calc <= accum_limit_f(63 downto 32);
   end if;
 end process;
   

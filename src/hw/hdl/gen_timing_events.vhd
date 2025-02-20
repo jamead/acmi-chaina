@@ -33,7 +33,8 @@ entity gen_timing_events is
     watchdog_clock      : out std_logic;
     watchdog_pulse      : out std_logic;
     startup_cnt         : out std_logic_vector(31 downto 0);
-    fault_startup       : out std_logic   
+    fault_startup       : out std_logic;
+    fp_trig_dly_out     : out std_logic  
   );    
 end gen_timing_events;
 
@@ -124,6 +125,18 @@ sampnum:  entity work.gen_samplenum
    trig => trig,   
    samplenum => adc_samplenum           
   );    
+  
+ 
+ 
+fp_trig: entity work.gen_window 
+  port map(
+   clk => clk, 
+   trig => trig, 
+   delay => cntrl_params.trig_out_delay, 
+   width => 16d"20",     -- 100ns width            
+   gate => fp_trig_dly_out              
+  );       
+  
   
   
 end behv;  
