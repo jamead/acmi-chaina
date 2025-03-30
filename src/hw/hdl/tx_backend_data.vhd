@@ -25,6 +25,7 @@ entity tx_backend_data is
    beam_cycle_window    : in std_logic;
    pulse_stats          : in pulse_stats_array;
    eeprom_params        : in eeprom_parameters_type;
+   i2c_regs             : in i2c_regs_type;
    faults_rdbk          : in std_logic_vector(15 downto 0);
    faults_lat           : in std_logic_vector(15 downto 0);
    timestamp            : in std_logic_vector(31 downto 0);
@@ -211,7 +212,16 @@ process (clk)
              -- beamaccum limit
              when 35  =>  tx_data   <= 32d"0"; --eeprom_params.beamaccum_limit_calc;           
              --reserved placeholder
-             when 36 to 62 => tx_data <= 32d"0";
+             when 36   =>  tx_data   <= 32d"0";
+             when 37   =>  tx_data   <= 32d"0";
+             when 38   =>  tx_data   <= 32d"0";             
+             when 39   =>  tx_data   <= 32d"0";            
+             when 40   =>  tx_data   <= 16d"0" & i2c_regs.temp0;
+             when 41   =>  tx_data   <= 16d"0" & i2c_regs.temp1; 
+             when 42   =>  tx_data   <= 16d"0" & i2c_regs.vreg0;
+             when 43   =>  tx_data   <= 16d"0" & i2c_regs.ireg0;            
+             
+             when 44 to 62 => tx_data <= 32d"0";
              when 63 =>   tx_data    <= x"deadbeef";
                                       words_written <= 0;
                                       state <= tx_settings;

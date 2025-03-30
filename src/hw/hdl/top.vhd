@@ -13,7 +13,7 @@ use work.acmi_package.ALL;
 
 entity top is
 generic(
-    FPGA_VERSION			: integer := 1;
+    FPGA_VERSION			: integer := 02212025;
     SIM_MODE				: integer := 0
     );
   port(
@@ -392,6 +392,7 @@ send_results: entity work.tx_backend_data
     adc_data_dly => adc_data_dly,
     pulse_stats => pulse_stats,
     eeprom_params => eeprom_params, 
+    i2c_regs => i2c_regs,
     faults_rdbk => faults_rdbk,
     faults_lat => faults_lat, 
     timestamp => timestamp,

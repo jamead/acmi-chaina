@@ -113,24 +113,8 @@ type pulse_stats_array is array(0 to 4) of pulse_stats_type;
 type i2c_regs_type is record
    temp0 : std_logic_vector(15 downto 0);
    temp1 : std_logic_vector(15 downto 0);
-   --temp2 : std_logic_vector(15 downto 0);
-   --temp3 : std_logic_vector(15 downto 0);
    Vreg0 : std_logic_vector(15 downto 0);
-   --Vreg1 : std_logic_vector(15 downto 0);
-   --Vreg2 : std_logic_vector(15 downto 0);
-   --Vreg3 : std_logic_vector(15 downto 0);
-   --Vreg4 : std_logic_vector(15 downto 0);
-   --Vreg5 : std_logic_vector(15 downto 0);
-   --Vreg6 : std_logic_vector(15 downto 0);
-   --Vreg7 : std_logic_vector(15 downto 0);
    Ireg0 : std_logic_vector(15 downto 0);
-   --Ireg1 : std_logic_vector(15 downto 0);
-   --Ireg2 : std_logic_vector(15 downto 0);
-   --Ireg3 : std_logic_vector(15 downto 0);
-   --Ireg4 : std_logic_vector(15 downto 0);
-   --Ireg5 : std_logic_vector(15 downto 0);
-   --Ireg6 : std_logic_vector(15 downto 0);
-   --Ireg7 : std_logic_vector(15 downto 0);
 end record i2c_regs_type;
 
 
