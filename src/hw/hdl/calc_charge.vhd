@@ -1,13 +1,14 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+--use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
 library UNISIM;
 use UNISIM.VComponents.all;
 
 library work;
-use work.acmi_package.ALL;
+use work.besocm_package.ALL;
 
 
 entity calc_charge is
@@ -40,17 +41,19 @@ end component;
   signal adc_data            : signed(15 downto 0);
   signal adc_data_inv        : signed(15 downto 0);
   signal adc_data_dly        : std_logic_vector(15 downto 0);
+  signal gate                : std_logic_vector(3 downto 0);
+  signal gate_or             : std_logic;
   signal boow_adc_data       : signed(15 downto 0);
   signal gate_width          : std_logic_vector(31 downto 0) := 32d"72";
 
    
---  attribute mark_debug : string;
---  attribute mark_debug of adc_data: signal is "true";
---  attribute mark_debug of adc_data_dly: signal is "true"; 
---  attribute mark_debug of adc_data_inv: signal is "true"; 
---  attribute mark_debug of adc_data_inv_dly: signal is "true";
---  attribute mark_debug of test_pulse_gates: signal is "true";
---  attribute mark_debug of adc_samplenum: signal is "true";
+  attribute mark_debug : string;
+  attribute mark_debug of adc_data: signal is "true";
+  attribute mark_debug of adc_data_dly: signal is "true"; 
+  attribute mark_debug of adc_data_inv: signal is "true"; 
+  attribute mark_debug of adc_data_inv_dly: signal is "true";
+  attribute mark_debug of test_pulse_gates: signal is "true";
+  attribute mark_debug of adc_samplenum: signal is "true";
   
   
   
@@ -104,8 +107,10 @@ beam:  entity work.calc_beam_stats
    adc_data => signed(adc_data_inv),
    adc_data_dly => signed(adc_data_inv_dly), 
    gate_start => params.beam_adc_delay,  
+   threshold => signed(params.beam_threshold),  
    adc_samplenum => adc_samplenum,
-   pulse_stats => pulse_stats(0)
+   pulse_stats => pulse_stats(0),
+   gate => gate(0) 
   );    
 
 
@@ -117,8 +122,10 @@ tp1:  entity work.calc_beam_stats
    adc_data => signed(adc_data),
    adc_data_dly => signed(adc_data_dly), 
    gate_start => params.tp1_adc_delay, 
+   threshold => signed(params.tp1_threshold),  
    adc_samplenum => adc_samplenum, 
-   pulse_stats => pulse_stats(1)
+   pulse_stats => pulse_stats(1),
+   gate => gate(1)
   );    
 
 -- -2nC
@@ -129,8 +136,10 @@ tp2:  entity work.calc_beam_stats
    adc_data => signed(adc_data_inv),
    adc_data_dly => signed(adc_data_inv_dly), 
    gate_start => params.tp2_adc_delay,
+   threshold => signed(params.tp2_threshold),
    adc_samplenum => adc_samplenum, 
-   pulse_stats => pulse_stats(2)
+   pulse_stats => pulse_stats(2),
+   gate => gate(2) 
   );    
  
 -- -18nC
@@ -141,8 +150,10 @@ tp3:  entity work.calc_beam_stats
    adc_data => signed(adc_data_inv),
    adc_data_dly => signed(adc_data_inv_dly), 
    gate_start => params.tp3_adc_delay, 
+   threshold => signed(params.tp3_threshold),  
    adc_samplenum => adc_samplenum,
-   pulse_stats => pulse_stats(3)
+   pulse_stats => pulse_stats(3),
+   gate => gate(3) 
   );    
 
 

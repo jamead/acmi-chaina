@@ -1,4 +1,3 @@
-
 # ltc2107 adc
 set_property PACKAGE_PIN V4 [get_ports adc_clk_p]
 set_property IOSTANDARD LVDS_25 [get_ports adc_clk_p]
@@ -80,23 +79,12 @@ set_property PACKAGE_PIN AA16 [get_ports adc_spi_sdo]
 set_property IOSTANDARD LVCMOS33 [get_ports adc_spi_sdo]
 set_property PULLUP true [get_ports adc_spi_sdo]
 
-#i2c interface
-set_property PACKAGE_PIN B20 [get_ports i2c_scl]
-set_property IOSTANDARD LVCMOS33 [get_ports i2c_scl]
-set_property DRIVE 12 [get_ports i2c_scl]
-set_property SLEW SLOW [get_ports i2c_scl]
 
-set_property PACKAGE_PIN A20 [get_ports i2c_sda]
-set_property IOSTANDARD LVCMOS33 [get_ports i2c_sda]
-set_property DRIVE 12 [get_ports i2c_sda]
-set_property SLEW SLOW [get_ports i2c_sda]
-
-
-# trigger outputs
-set_property PACKAGE_PIN N17 [get_ports fiber_trig_watchdog]
-set_property IOSTANDARD LVCMOS33 [get_ports fiber_trig_watchdog]
-set_property DRIVE 12 [get_ports fiber_trig_watchdog]
-set_property SLEW FAST [get_ports fiber_trig_watchdog]
+# trigger input and outputs
+set_property PACKAGE_PIN N17 [get_ports fiber_trig_in]
+set_property IOSTANDARD LVCMOS33 [get_ports fiber_trig_in]
+set_property DRIVE 12 [get_ports fiber_trig_in]
+set_property SLEW FAST [get_ports fiber_trig_in]
 
 set_property PACKAGE_PIN P15 [get_ports fiber_trig_led]
 set_property IOSTANDARD LVCMOS33 [get_ports fiber_trig_led]
@@ -128,6 +116,8 @@ set_property SLEW FAST [get_ports eeprom_sdi]
 
 set_property PACKAGE_PIN E1 [get_ports eeprom_sdo]
 set_property IOSTANDARD LVCMOS33 [get_ports eeprom_sdo]
+set_property DRIVE 12 [get_ports eeprom_sdo]
+set_property SLEW FAST [get_ports eeprom_sdo]
 
 set_property PACKAGE_PIN B2 [get_ports eeprom_holdn]
 set_property IOSTANDARD LVCMOS33 [get_ports eeprom_holdn]
@@ -146,68 +136,156 @@ set_property SLEW FAST [get_ports keylock_detect_led]
 
 
 # tp pulses (to Tony's test pulse generation board)
-#header pin 1 :  tp_sw3 on schematic
-set_property PACKAGE_PIN M5 [get_ports {tp_neg_pulse[4]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tp_neg_pulse[4]}]
-set_property DRIVE 12 [get_ports {tp_neg_pulse[4]}]
-set_property SLEW FAST [get_ports {tp_neg_pulse[4]}]
+#tpdac_sdin on schematic  (sw1)
+set_property PACKAGE_PIN R1 [get_ports {tp_pulse[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tp_pulse[0]}]
+set_property DRIVE 12 [get_ports {tp_pulse[0]}]
+set_property SLEW FAST [get_ports {tp_pulse[0]}]
 
-#header pin 3 :  tp_sw2 on schematic
-set_property PACKAGE_PIN M6 [get_ports {tp_neg_pulse[3]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tp_neg_pulse[3]}]
-set_property DRIVE 12 [get_ports {tp_neg_pulse[3]}]
-set_property SLEW FAST [get_ports {tp_neg_pulse[3]}]
+#tpdac_sclk on schematic  (sw2)
+set_property PACKAGE_PIN P4 [get_ports {tp_pulse[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tp_pulse[1]}]
+set_property DRIVE 12 [get_ports {tp_pulse[1]}]
+set_property SLEW FAST [get_ports {tp_pulse[1]}]
 
-#header pin 5:  tp_sw1 on schematic
-set_property PACKAGE_PIN N2 [get_ports {tp_neg_pulse[2]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tp_neg_pulse[2]}]
-set_property DRIVE 12 [get_ports {tp_neg_pulse[2]}]
-set_property SLEW FAST [get_ports {tp_neg_pulse[2]}]
+#tpdac_syncn on schematic (sw3)
+set_property PACKAGE_PIN P2 [get_ports {tp_pulse[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tp_pulse[2]}]
+set_property DRIVE 12 [get_ports {tp_pulse[2]}]
+set_property SLEW FAST [get_ports {tp_pulse[2]}]
 
-#header pin 7:  tp_sw0 on schematic
-set_property PACKAGE_PIN N3 [get_ports {tp_neg_pulse[1]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tp_neg_pulse[1]}]
-set_property DRIVE 12 [get_ports {tp_neg_pulse[1]}]
-set_property SLEW FAST [get_ports {tp_neg_pulse[1]}]
+#tpdac_ldacn on schematic  (sw4)
+set_property PACKAGE_PIN P1 [get_ports {tp_pulse[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tp_pulse[3]}]
+set_property DRIVE 12 [get_ports {tp_pulse[3]}]
+set_property SLEW FAST [get_ports {tp_pulse[3]}]
 
-#header pin 9:  tpdac_sdo on schematic
-set_property PACKAGE_PIN N4 [get_ports {tp_neg_pulse[0]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tp_neg_pulse[0]}]
-set_property DRIVE 12 [get_ports {tp_neg_pulse[0]}]
-set_property SLEW FAST [get_ports {tp_neg_pulse[0]}]
+#tpdac_clrn on schematic (a0)
+set_property PACKAGE_PIN N5 [get_ports {tp_pulse[4]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tp_pulse[4]}]
+set_property DRIVE 12 [get_ports {tp_pulse[4]}]
+set_property SLEW FAST [get_ports {tp_pulse[4]}]
 
-#header pin 11:  tpdac_clrn on schematic
-set_property PACKAGE_PIN N5 [get_ports {tp_pos_pulse[4]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tp_pos_pulse[4]}]
-set_property DRIVE 12 [get_ports {tp_pos_pulse[4]}]
-set_property SLEW FAST [get_ports {tp_pos_pulse[4]}]
+#tpdac_sdo on schematic  (a1)
+set_property PACKAGE_PIN N4 [get_ports {tp_pulse[5]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tp_pulse[5]}]
+set_property DRIVE 12 [get_ports {tp_pulse[5]}]
+set_property SLEW FAST [get_ports {tp_pulse[5]}]
 
-#header pin 13:  tpdac_ldacn on schematic
-set_property PACKAGE_PIN P1 [get_ports {tp_pos_pulse[3]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tp_pos_pulse[3]}]
-set_property DRIVE 12 [get_ports {tp_pos_pulse[3]}]
-set_property SLEW FAST [get_ports {tp_pos_pulse[3]}]
+#tp_sw0 on schematic  (en)
+set_property PACKAGE_PIN N3 [get_ports {tp_pulse[6]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tp_pulse[6]}]
+set_property DRIVE 12 [get_ports {tp_pulse[6]}]
+set_property SLEW FAST [get_ports {tp_pulse[6]}]
 
-#header pin 15:  tpdac_syncn
-set_property PACKAGE_PIN P2 [get_ports {tp_pos_pulse[2]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tp_pos_pulse[2]}]
-set_property DRIVE 12 [get_ports {tp_pos_pulse[2]}]
-set_property SLEW FAST [get_ports {tp_pos_pulse[2]}]
-
-#header pin 17:  tpdac_sclk
-set_property PACKAGE_PIN P4 [get_ports {tp_pos_pulse[1]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tp_pos_pulse[1]}]
-set_property DRIVE 12 [get_ports {tp_pos_pulse[1]}]
-set_property SLEW FAST [get_ports {tp_pos_pulse[1]}]
-
-#header pin 19:  tpdac_sdin
-set_property PACKAGE_PIN R1 [get_ports {tp_pos_pulse[0]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {tp_pos_pulse[0]}]
-set_property DRIVE 12 [get_ports {tp_pos_pulse[0]}]
-set_property SLEW FAST [get_ports {tp_pos_pulse[0]}]
+#tp_sw1 on schematic (nc)
+set_property PACKAGE_PIN N2 [get_ports {tp_pulse[7]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {tp_pulse[7]}]
+set_property DRIVE 12 [get_ports {tp_pulse[7]}]
+set_property SLEW FAST [get_ports {tp_pulse[7]}]
 
 
 
+
+
+
+#picozed to artix spi
+set_property PACKAGE_PIN D21 [get_ports pzed_spi_dout]
+set_property IOSTANDARD LVCMOS33 [get_ports pzed_spi_dout]
+
+
+set_property PACKAGE_PIN E22 [get_ports pzed_spi_din]
+set_property IOSTANDARD LVCMOS33 [get_ports pzed_spi_din]
+set_property DRIVE 12 [get_ports pzed_spi_din]
+set_property SLEW FAST [get_ports pzed_spi_din]
+
+set_property PACKAGE_PIN D17 [get_ports pzed_spi_sclk]
+set_property IOSTANDARD LVCMOS33 [get_ports pzed_spi_sclk]
+
+set_property PACKAGE_PIN E21 [get_ports pzed_spi_cs]
+set_property IOSTANDARD LVCMOS33 [get_ports pzed_spi_cs]
+
+
+
+
+
+
+# waveform data (artix to picoZed)
+set_property PACKAGE_PIN H20 [get_ports {waveform_data_p[0]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_p[0]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_n[0]}]
+
+set_property PACKAGE_PIN G15 [get_ports {waveform_data_p[1]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_p[1]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_n[1]}]
+
+set_property PACKAGE_PIN J14 [get_ports {waveform_data_p[2]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_p[2]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_n[2]}]
+
+set_property PACKAGE_PIN G17 [get_ports {waveform_data_p[3]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_p[3]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_n[3]}]
+
+set_property PACKAGE_PIN J15 [get_ports {waveform_data_p[4]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_p[4]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_n[4]}]
+
+set_property PACKAGE_PIN H17 [get_ports {waveform_data_p[5]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_p[5]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_n[5]}]
+
+set_property PACKAGE_PIN J22 [get_ports {waveform_data_p[6]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_p[6]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_n[6]}]
+
+set_property PACKAGE_PIN J19 [get_ports {waveform_data_p[7]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_p[7]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_n[7]}]
+
+set_property PACKAGE_PIN K21 [get_ports {waveform_data_p[8]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_p[8]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_n[8]}]
+
+set_property PACKAGE_PIN M21 [get_ports {waveform_data_p[9]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_p[9]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_n[9]}]
+
+set_property PACKAGE_PIN J20 [get_ports {waveform_data_p[10]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_p[10]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_n[10]}]
+
+set_property PACKAGE_PIN K18 [get_ports {waveform_data_p[11]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_p[11]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_n[11]}]
+
+set_property PACKAGE_PIN L19 [get_ports {waveform_data_p[12]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_p[12]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_n[12]}]
+
+set_property PACKAGE_PIN N22 [get_ports {waveform_data_p[13]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_p[13]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_n[13]}]
+
+set_property PACKAGE_PIN M18 [get_ports {waveform_data_p[14]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_p[14]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_n[14]}]
+
+set_property PACKAGE_PIN N18 [get_ports {waveform_data_p[15]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_p[15]}]
+set_property IOSTANDARD LVDS_25 [get_ports {waveform_data_n[15]}]
+
+set_property PACKAGE_PIN K13 [get_ports waveform_enb_p]
+set_property IOSTANDARD LVDS_25 [get_ports waveform_enb_p]
+set_property IOSTANDARD LVDS_25 [get_ports waveform_enb_n]
+
+set_property PACKAGE_PIN N20 [get_ports waveform_sel_p]
+set_property IOSTANDARD LVDS_25 [get_ports waveform_sel_p]
+set_property IOSTANDARD LVDS_25 [get_ports waveform_sel_n]
+
+set_property PACKAGE_PIN L16 [get_ports waveform_clk_p]
+set_property IOSTANDARD LVDS_25 [get_ports waveform_clk_p]
+set_property IOSTANDARD LVDS_25 [get_ports waveform_clk_n]
 
 
 
@@ -289,157 +367,157 @@ set_property SLEW FAST [get_ports {dbg[9]}]
 
 
 # test pulse dac
-#set_property PACKAGE_PIN G3 [get_ports {dac_tp_data[0]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[0]}]
-#set_property DRIVE 12 [get_ports {dac_tp_data[0]}]
-#set_property SLEW FAST [get_ports {dac_tp_data[0]}]
+set_property PACKAGE_PIN G3 [get_ports {dac_tp_data[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[0]}]
+set_property DRIVE 12 [get_ports {dac_tp_data[0]}]
+set_property SLEW FAST [get_ports {dac_tp_data[0]}]
 
-#set_property PACKAGE_PIN G2 [get_ports {dac_tp_data[1]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[1]}]
-#set_property DRIVE 12 [get_ports {dac_tp_data[1]}]
-#set_property SLEW FAST [get_ports {dac_tp_data[1]}]
+set_property PACKAGE_PIN G2 [get_ports {dac_tp_data[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[1]}]
+set_property DRIVE 12 [get_ports {dac_tp_data[1]}]
+set_property SLEW FAST [get_ports {dac_tp_data[1]}]
 
-#set_property PACKAGE_PIN H3 [get_ports {dac_tp_data[2]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[2]}]
-#set_property DRIVE 12 [get_ports {dac_tp_data[2]}]
-#set_property SLEW FAST [get_ports {dac_tp_data[2]}]
+set_property PACKAGE_PIN H3 [get_ports {dac_tp_data[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[2]}]
+set_property DRIVE 12 [get_ports {dac_tp_data[2]}]
+set_property SLEW FAST [get_ports {dac_tp_data[2]}]
 
-#set_property PACKAGE_PIN H2 [get_ports {dac_tp_data[3]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[3]}]
-#set_property DRIVE 12 [get_ports {dac_tp_data[3]}]
-#set_property SLEW FAST [get_ports {dac_tp_data[3]}]
+set_property PACKAGE_PIN H2 [get_ports {dac_tp_data[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[3]}]
+set_property DRIVE 12 [get_ports {dac_tp_data[3]}]
+set_property SLEW FAST [get_ports {dac_tp_data[3]}]
 
-#set_property PACKAGE_PIN J2 [get_ports {dac_tp_data[4]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[4]}]
-#set_property DRIVE 12 [get_ports {dac_tp_data[4]}]
-#set_property SLEW FAST [get_ports {dac_tp_data[4]}]
+set_property PACKAGE_PIN J2 [get_ports {dac_tp_data[4]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[4]}]
+set_property DRIVE 12 [get_ports {dac_tp_data[4]}]
+set_property SLEW FAST [get_ports {dac_tp_data[4]}]
 
-#set_property PACKAGE_PIN J1 [get_ports {dac_tp_data[5]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[5]}]
-#set_property DRIVE 12 [get_ports {dac_tp_data[5]}]
-#set_property SLEW FAST [get_ports {dac_tp_data[5]}]
+set_property PACKAGE_PIN J1 [get_ports {dac_tp_data[5]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[5]}]
+set_property DRIVE 12 [get_ports {dac_tp_data[5]}]
+set_property SLEW FAST [get_ports {dac_tp_data[5]}]
 
-#set_property PACKAGE_PIN K3 [get_ports {dac_tp_data[6]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[6]}]
-#set_property DRIVE 12 [get_ports {dac_tp_data[6]}]
-#set_property SLEW FAST [get_ports {dac_tp_data[6]}]
+set_property PACKAGE_PIN K3 [get_ports {dac_tp_data[6]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[6]}]
+set_property DRIVE 12 [get_ports {dac_tp_data[6]}]
+set_property SLEW FAST [get_ports {dac_tp_data[6]}]
 
-#set_property PACKAGE_PIN K2 [get_ports {dac_tp_data[7]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[7]}]
-#set_property DRIVE 12 [get_ports {dac_tp_data[7]}]
-#set_property SLEW FAST [get_ports {dac_tp_data[7]}]
+set_property PACKAGE_PIN K2 [get_ports {dac_tp_data[7]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[7]}]
+set_property DRIVE 12 [get_ports {dac_tp_data[7]}]
+set_property SLEW FAST [get_ports {dac_tp_data[7]}]
 
-#set_property PACKAGE_PIN K1 [get_ports {dac_tp_data[8]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[8]}]
-#set_property DRIVE 12 [get_ports {dac_tp_data[8]}]
-#set_property SLEW FAST [get_ports {dac_tp_data[8]}]
+set_property PACKAGE_PIN K1 [get_ports {dac_tp_data[8]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[8]}]
+set_property DRIVE 12 [get_ports {dac_tp_data[8]}]
+set_property SLEW FAST [get_ports {dac_tp_data[8]}]
 
-#set_property PACKAGE_PIN L1 [get_ports {dac_tp_data[9]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[9]}]
-#set_property DRIVE 12 [get_ports {dac_tp_data[9]}]
-#set_property SLEW FAST [get_ports {dac_tp_data[9]}]
+set_property PACKAGE_PIN L1 [get_ports {dac_tp_data[9]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[9]}]
+set_property DRIVE 12 [get_ports {dac_tp_data[9]}]
+set_property SLEW FAST [get_ports {dac_tp_data[9]}]
 
-#set_property PACKAGE_PIN L3 [get_ports {dac_tp_data[10]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[10]}]
-#set_property DRIVE 12 [get_ports {dac_tp_data[10]}]
-#set_property SLEW FAST [get_ports {dac_tp_data[10]}]
+set_property PACKAGE_PIN L3 [get_ports {dac_tp_data[10]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[10]}]
+set_property DRIVE 12 [get_ports {dac_tp_data[10]}]
+set_property SLEW FAST [get_ports {dac_tp_data[10]}]
 
-#set_property PACKAGE_PIN M3 [get_ports {dac_tp_data[11]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[11]}]
-#set_property DRIVE 12 [get_ports {dac_tp_data[11]}]
-#set_property SLEW FAST [get_ports {dac_tp_data[11]}]
+set_property PACKAGE_PIN M3 [get_ports {dac_tp_data[11]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[11]}]
+set_property DRIVE 12 [get_ports {dac_tp_data[11]}]
+set_property SLEW FAST [get_ports {dac_tp_data[11]}]
 
-#set_property PACKAGE_PIN M2 [get_ports {dac_tp_data[12]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[12]}]
-#set_property DRIVE 12 [get_ports {dac_tp_data[12]}]
-#set_property SLEW FAST [get_ports {dac_tp_data[12]}]
+set_property PACKAGE_PIN M2 [get_ports {dac_tp_data[12]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[12]}]
+set_property DRIVE 12 [get_ports {dac_tp_data[12]}]
+set_property SLEW FAST [get_ports {dac_tp_data[12]}]
 
-#set_property PACKAGE_PIN L4 [get_ports {dac_tp_data[13]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[13]}]
-#set_property DRIVE 12 [get_ports {dac_tp_data[13]}]
-#set_property SLEW FAST [get_ports {dac_tp_data[13]}]
+set_property PACKAGE_PIN L4 [get_ports {dac_tp_data[13]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_tp_data[13]}]
+set_property DRIVE 12 [get_ports {dac_tp_data[13]}]
+set_property SLEW FAST [get_ports {dac_tp_data[13]}]
 
-#set_property PACKAGE_PIN M1 [get_ports dac_tp_clk]
-#set_property IOSTANDARD LVCMOS33 [get_ports dac_tp_clk]
-#set_property DRIVE 12 [get_ports dac_tp_clk]
-#set_property SLEW FAST [get_ports dac_tp_clk]
+set_property PACKAGE_PIN M1 [get_ports dac_tp_clk]
+set_property IOSTANDARD LVCMOS33 [get_ports dac_tp_clk]
+set_property DRIVE 12 [get_ports dac_tp_clk]
+set_property SLEW FAST [get_ports dac_tp_clk]
 
 
 # front panel test port dac
-#set_property PACKAGE_PIN D20 [get_ports {dac_fp_data[0]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[0]}]
-#set_property DRIVE 12 [get_ports {dac_fp_data[0]}]
-#set_property SLEW FAST [get_ports {dac_fp_data[0]}]
+set_property PACKAGE_PIN D20 [get_ports {dac_fp_data[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[0]}]
+set_property DRIVE 12 [get_ports {dac_fp_data[0]}]
+set_property SLEW FAST [get_ports {dac_fp_data[0]}]
 
-#set_property PACKAGE_PIN D19 [get_ports {dac_fp_data[1]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[1]}]
-#set_property DRIVE 12 [get_ports {dac_fp_data[1]}]
-#set_property SLEW FAST [get_ports {dac_fp_data[1]}]
+set_property PACKAGE_PIN D19 [get_ports {dac_fp_data[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[1]}]
+set_property DRIVE 12 [get_ports {dac_fp_data[1]}]
+set_property SLEW FAST [get_ports {dac_fp_data[1]}]
 
-#set_property PACKAGE_PIN C22 [get_ports {dac_fp_data[2]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[2]}]
-#set_property DRIVE 12 [get_ports {dac_fp_data[2]}]
-#set_property SLEW FAST [get_ports {dac_fp_data[2]}]
+set_property PACKAGE_PIN C22 [get_ports {dac_fp_data[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[2]}]
+set_property DRIVE 12 [get_ports {dac_fp_data[2]}]
+set_property SLEW FAST [get_ports {dac_fp_data[2]}]
 
-#set_property PACKAGE_PIN C20 [get_ports {dac_fp_data[3]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[3]}]
-#set_property DRIVE 12 [get_ports {dac_fp_data[3]}]
-#set_property SLEW FAST [get_ports {dac_fp_data[3]}]
+set_property PACKAGE_PIN C20 [get_ports {dac_fp_data[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[3]}]
+set_property DRIVE 12 [get_ports {dac_fp_data[3]}]
+set_property SLEW FAST [get_ports {dac_fp_data[3]}]
 
-#set_property PACKAGE_PIN C19 [get_ports {dac_fp_data[4]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[4]}]
-#set_property DRIVE 12 [get_ports {dac_fp_data[4]}]
-#set_property SLEW FAST [get_ports {dac_fp_data[4]}]
+set_property PACKAGE_PIN C19 [get_ports {dac_fp_data[4]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[4]}]
+set_property DRIVE 12 [get_ports {dac_fp_data[4]}]
+set_property SLEW FAST [get_ports {dac_fp_data[4]}]
 
-#set_property PACKAGE_PIN C18 [get_ports {dac_fp_data[5]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[5]}]
-#set_property DRIVE 12 [get_ports {dac_fp_data[5]}]
-#set_property SLEW FAST [get_ports {dac_fp_data[5]}]
+set_property PACKAGE_PIN C18 [get_ports {dac_fp_data[5]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[5]}]
+set_property DRIVE 12 [get_ports {dac_fp_data[5]}]
+set_property SLEW FAST [get_ports {dac_fp_data[5]}]
 
-#set_property PACKAGE_PIN E19 [get_ports {dac_fp_data[6]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[6]}]
-#set_property DRIVE 12 [get_ports {dac_fp_data[6]}]
-#set_property SLEW FAST [get_ports {dac_fp_data[6]}]
+set_property PACKAGE_PIN E19 [get_ports {dac_fp_data[6]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[6]}]
+set_property DRIVE 12 [get_ports {dac_fp_data[6]}]
+set_property SLEW FAST [get_ports {dac_fp_data[6]}]
 
-#set_property PACKAGE_PIN B21 [get_ports {dac_fp_data[7]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[7]}]
-#set_property DRIVE 12 [get_ports {dac_fp_data[7]}]
-#set_property SLEW FAST [get_ports {dac_fp_data[7]}]
+set_property PACKAGE_PIN B21 [get_ports {dac_fp_data[7]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[7]}]
+set_property DRIVE 12 [get_ports {dac_fp_data[7]}]
+set_property SLEW FAST [get_ports {dac_fp_data[7]}]
 
-#set_property PACKAGE_PIN B20 [get_ports {dac_fp_data[8]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[8]}]
-#set_property DRIVE 12 [get_ports {dac_fp_data[8]}]
-#set_property SLEW FAST [get_ports {dac_fp_data[8]}]
+set_property PACKAGE_PIN B20 [get_ports {dac_fp_data[8]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[8]}]
+set_property DRIVE 12 [get_ports {dac_fp_data[8]}]
+set_property SLEW FAST [get_ports {dac_fp_data[8]}]
 
-#set_property PACKAGE_PIN B18 [get_ports {dac_fp_data[9]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[9]}]
-#set_property DRIVE 12 [get_ports {dac_fp_data[9]}]
-#set_property SLEW FAST [get_ports {dac_fp_data[9]}]
+set_property PACKAGE_PIN B18 [get_ports {dac_fp_data[9]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[9]}]
+set_property DRIVE 12 [get_ports {dac_fp_data[9]}]
+set_property SLEW FAST [get_ports {dac_fp_data[9]}]
 
-#set_property PACKAGE_PIN B17 [get_ports {dac_fp_data[10]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[10]}]
-#set_property DRIVE 12 [get_ports {dac_fp_data[10]}]
-#set_property SLEW FAST [get_ports {dac_fp_data[10]}]
+set_property PACKAGE_PIN B17 [get_ports {dac_fp_data[10]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[10]}]
+set_property DRIVE 12 [get_ports {dac_fp_data[10]}]
+set_property SLEW FAST [get_ports {dac_fp_data[10]}]
 
-#set_property PACKAGE_PIN B22 [get_ports {dac_fp_data[11]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[11]}]
-#set_property DRIVE 12 [get_ports {dac_fp_data[11]}]
-#set_property SLEW FAST [get_ports {dac_fp_data[11]}]
+set_property PACKAGE_PIN B22 [get_ports {dac_fp_data[11]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[11]}]
+set_property DRIVE 12 [get_ports {dac_fp_data[11]}]
+set_property SLEW FAST [get_ports {dac_fp_data[11]}]
 
-#set_property PACKAGE_PIN A20 [get_ports {dac_fp_data[12]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[12]}]
-#set_property DRIVE 12 [get_ports {dac_fp_data[12]}]
-#set_property SLEW FAST [get_ports {dac_fp_data[12]}]
+set_property PACKAGE_PIN A20 [get_ports {dac_fp_data[12]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[12]}]
+set_property DRIVE 12 [get_ports {dac_fp_data[12]}]
+set_property SLEW FAST [get_ports {dac_fp_data[12]}]
 
-#set_property PACKAGE_PIN A19 [get_ports {dac_fp_data[13]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[13]}]
-#set_property DRIVE 12 [get_ports {dac_fp_data[13]}]
-#set_property SLEW FAST [get_ports {dac_fp_data[13]}]
+set_property PACKAGE_PIN A19 [get_ports {dac_fp_data[13]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {dac_fp_data[13]}]
+set_property DRIVE 12 [get_ports {dac_fp_data[13]}]
+set_property SLEW FAST [get_ports {dac_fp_data[13]}]
 
-#set_property PACKAGE_PIN A21 [get_ports dac_fp_clk]
-#set_property IOSTANDARD LVCMOS33 [get_ports dac_fp_clk]
-#set_property DRIVE 12 [get_ports dac_fp_clk]
-#set_property SLEW FAST [get_ports dac_fp_clk]
+set_property PACKAGE_PIN A21 [get_ports dac_fp_clk]
+set_property IOSTANDARD LVCMOS33 [get_ports dac_fp_clk]
+set_property DRIVE 12 [get_ports dac_fp_clk]
+set_property SLEW FAST [get_ports dac_fp_clk]
 
 
 
@@ -505,12 +583,12 @@ set_property PACKAGE_PIN V20 [get_ports {faultsn[6]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {faultsn[6]}]
 set_property DRIVE 12 [get_ports {faultsn[6]}]
 set_property SLEW FAST [get_ports {faultsn[6]}]
-
+ 
 set_property PACKAGE_PIN V22 [get_ports {faultsn[7]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {faultsn[7]}]
 set_property DRIVE 12 [get_ports {faultsn[7]}]
 set_property SLEW FAST [get_ports {faultsn[7]}]
-
+ 
 set_property PACKAGE_PIN P19 [get_ports {faultsn[8]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {faultsn[8]}]
 set_property DRIVE 12 [get_ports {faultsn[8]}]
@@ -604,7 +682,7 @@ set_property SLEW FAST [get_ports {faultsn[11]}]
 
 # fault latched inputs
 
-
+ 
 
 # fault_beam_high latched  (fault_fpga_11_lat)
 
@@ -694,12 +772,6 @@ set_property IOSTANDARD LVCMOS33 [get_ports acis_force_trip]
 #acis_keylock
 set_property PACKAGE_PIN N15 [get_ports acis_keylock]
 set_property IOSTANDARD LVCMOS33 [get_ports acis_keylock]
-
-
-
-
-
-
 
 
 

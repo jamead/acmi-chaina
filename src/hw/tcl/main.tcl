@@ -45,8 +45,7 @@ proc setSources {} {
   
   lappend Sources {"../hdl/accumulator.vhd" "VHDL 2008"}  
   
-  lappend Sources {"../hdl/i2c_monitors.vhd" "VHDL 2008"}
-  
+
   lappend Sources {"../hdl/rx_backend_data.vhd" "VHDL 2008"} 
   lappend Sources {"../hdl/tx_backend_data.vhd" "VHDL 2008"}  
   lappend Sources {"../hdl/find_boow_pulse.vhd" "VHDL 2008"}   
@@ -62,19 +61,12 @@ proc setSources {} {
   lappend Sources {"../hdl/read_ltc2107.vhd" "VHDL 2008"} 
   lappend Sources {"../hdl/ltc2107_spi.vhd" "VHDL 2008"}  
   
-  lappend Sources {"../hdl/kria_comm_wrapper.vhd" "VHDL 2008"}   
-  lappend Sources {"../hdl/align_rxdata.vhd" "VHDL 2008"} 
-  lappend Sources {"../hdl/gtp/kria_comm_support.vhd" "VHDL 2008"} 
-  lappend Sources {"../hdl/gtp/kria_comm_common_reset.vhd" "VHDL 2008"}     
-  lappend Sources {"../hdl/gtp/kria_comm_gt_usrclk_source.vhd" "VHDL 2008"}   
-  lappend Sources {"../hdl/gtp/kria_comm_clock_module.vhd" "VHDL 2008"}  
-  lappend Sources {"../hdl/gtp/kria_comm_cpll_railing.vhd" "VHDL 2008"}   
-  lappend Sources {"../hdl/gtp/kria_comm_common.vhd" "VHDL 2008"}        
-  
+  lappend Sources {"../hdl/tx_pzed_data.vhd" "VHDL 2008"} 
+  lappend Sources {"../hdl/pzed_spi.vhd" "VHDL 2008"}    
+   
   lappend Sources {"../hdl/stretch.vhd" "VHDL 2008"}  
 
-  lappend Sources {"../cstr/pins.xdc"  "XDC"} 
-  lappend Sources {"../cstr/gtp.xdc"  "XDC"}   
+  lappend Sources {"../cstr/pins.xdc"  "XDC"}   
   lappend Sources {"../cstr/timing.xdc"  "XDC"}  
   lappend Sources {"../cstr/debug.xdc"  "XDC"}   
       
@@ -107,12 +99,8 @@ proc doOnCreate {} {
   source ${TclPath}/adc_shift_ram.tcl
   source ${TclPath}/boow_shift_ram.tcl
   source ${TclPath}/accum_dpram.tcl
-  source ${TclPath}/adc_fifo.tcl  
-  source ${TclPath}/tx_data_fifo.tcl
-  source ${TclPath}/gtp_clk.tcl   
   source ${TclPath}/beamoow_fifo.tcl 
-  source ${TclPath}/kria_comm.tcl 
-  source ${TclPath}/vio_spi.tcl
+
 
 
   addSources "Sources" 

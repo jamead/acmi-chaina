@@ -24,18 +24,18 @@ end pwronreset;
 
 architecture rtl of pwronreset is
 
-constant RESET_TIME_SIM     : std_logic_vector(31 downto 0) := 32d"2500";
-constant RESET_TIME_SYNTH   : std_logic_vector(31 downto 0) := 32d"100_000_000";
+constant RESET_TIME_SIM     : std_logic_vector(31 downto 0) := 32d"500";
+constant RESET_TIME_SYNTH   : std_logic_vector(31 downto 0) := 32d"50000000";
 
 signal reset_cntr           : std_logic_vector(31 downto 0) := 32d"0";
 signal reset_time           : std_logic_vector(31 downto 0);
 
 
    --debug signals (connect to ila)
---   attribute mark_debug                 : string;
---   attribute mark_debug of fault_no_clock: signal is "true";   
---   attribute mark_debug of reset: signal is "true";
---   attribute mark_debug of reset_cntr: signal is "true";
+   attribute mark_debug                 : string;
+   attribute mark_debug of fault_no_clock: signal is "true";   
+   attribute mark_debug of reset: signal is "true";
+   attribute mark_debug of reset_cntr: signal is "true";
 
 
 begin  

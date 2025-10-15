@@ -29,13 +29,6 @@ architecture behv of gen_window is
   signal pulse_hicnt        : std_logic_vector(15 downto 0) := 16d"0";  
   signal pulse              : std_logic := '0';
   
-   --debug signals (connect to ila)
-   attribute mark_debug                 : string;
-   attribute mark_debug of trig: signal is "true";  
-   attribute mark_debug of delay: signal is "true";
-   attribute mark_debug of width: signal is "true";  
-   attribute mark_debug of gate: signal is "true";          
-  
   
 begin  
 

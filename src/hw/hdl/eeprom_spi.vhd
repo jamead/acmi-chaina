@@ -7,7 +7,7 @@ library UNISIM;
 use UNISIM.VComponents.all;
 
 library work;
-use work.acmi_package.ALL;
+use work.besocm_package.ALL;
 
 
 entity eeprom_spi is
@@ -50,16 +50,16 @@ architecture behv of eeprom_spi is
   signal opcode             : std_logic_vector(7 downto 0);
   
   
---  attribute mark_debug                  : string;
---  attribute mark_debug of trig : signal is "true";
---  attribute mark_debug of trig_clr : signal is "true";  
---  attribute mark_debug of sclk : signal is "true";
---  attribute mark_debug of din : signal is "true";
---  attribute mark_debug of dout : signal is "true";
---  attribute mark_debug of csn : signal is "true";
---  attribute mark_debug of rddata : signal is "true";
---  attribute mark_debug of rreg : signal is "true";
---  attribute mark_debug of opcode: signal is "true";
+  attribute mark_debug                  : string;
+  attribute mark_debug of trig : signal is "true";
+  attribute mark_debug of trig_clr : signal is "true";  
+  attribute mark_debug of sclk : signal is "true";
+  attribute mark_debug of din : signal is "true";
+  attribute mark_debug of dout : signal is "true";
+  attribute mark_debug of csn : signal is "true";
+  attribute mark_debug of rddata : signal is "true";
+  attribute mark_debug of rreg : signal is "true";
+  attribute mark_debug of opcode: signal is "true";
   
   
   

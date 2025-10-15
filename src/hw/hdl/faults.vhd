@@ -12,7 +12,7 @@ use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
   
 library work;
-use work.acmi_package.ALL;
+use work.besocm_package.ALL;
 
   
 entity faults is
@@ -64,18 +64,18 @@ architecture behv of faults is
     signal beamoow_peak_found_lat    : std_logic;
 
 
---    attribute mark_debug                  : string;
---    attribute mark_debug of fault_beam_high : signal is "true";
---    attribute mark_debug of fault_bunch_limit : signal is "true";
---    attribute mark_debug of fault_bad_limit: signal is "true";
---    attribute mark_debug of fault_tp1 : signal is "true";   
---    attribute mark_debug of fault_tp2 : signal is "true";
---    attribute mark_debug of fault_tp3 : signal is "true";
---    attribute mark_debug of fault_tp4 : signal is "true";
---    attribute mark_debug of faults_rdbk: signal is "true";
---    attribute mark_debug of beamoow_peak_found_lat: signal is "true";
---    attribute mark_debug of adc_sat_lat: signal is "true";
---    attribute mark_debug of fault_beam_out_window: signal is "true";
+    attribute mark_debug                  : string;
+    attribute mark_debug of fault_beam_high : signal is "true";
+    attribute mark_debug of fault_bunch_limit : signal is "true";
+    attribute mark_debug of fault_bad_limit: signal is "true";
+    attribute mark_debug of fault_tp1 : signal is "true";   
+    attribute mark_debug of fault_tp2 : signal is "true";
+    attribute mark_debug of fault_tp3 : signal is "true";
+    attribute mark_debug of fault_tp4 : signal is "true";
+    attribute mark_debug of faults_rdbk: signal is "true";
+    attribute mark_debug of beamoow_peak_found_lat: signal is "true";
+    attribute mark_debug of adc_sat_lat: signal is "true";
+    attribute mark_debug of fault_beam_out_window: signal is "true";
 
 
 begin  
@@ -150,8 +150,7 @@ begin
       if (prev_beam_cycle_window = '1' and beam_cycle_window = '0') then
         
         -- beam accum limit check
-        --if (accum > params.beamaccum_limit_calc) then
-        if (accum > params.beamaccum_limit_hr) then 
+        if (accum > params.beamaccum_limit_calc) then
           fault_bunch_limit <= '1';
         else
           fault_bunch_limit <= '0';
@@ -233,8 +232,7 @@ begin
    
         
         -- bad limit, compares crc calculated in fpga vs what is in eeprom
-        --if ((params.crc32_eeprom /= params.crc32_calc) and acis_keylock = '1') then
-        if (params.crc32_eeprom /= params.crc32_calc) then
+        if ((params.crc32_eeprom /= params.crc32_calc) and acis_keylock = '1') then
           fault_bad_limit <= '1';
         else 
           fault_bad_limit <= '0';

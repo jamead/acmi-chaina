@@ -12,7 +12,7 @@ use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
 library work;
-use work.acmi_package.ALL;
+use work.besocm_package.ALL;
 
 
 entity crc_compute is 
@@ -41,7 +41,7 @@ architecture behv of crc_compute is
   
 
 
---   --debug signals (connect to ila)
+   --debug signals (connect to ila)
    attribute mark_debug                 : string;
    attribute mark_debug of clk_cnt: signal is "true";   
    attribute mark_debug of crc_check: signal is "true";
@@ -64,8 +64,7 @@ process(clk)
         clk_cnt <= 32d"0"; 
         crc_check <= '0';
       else
-        --if (clk_cnt >= 32d"200000000") then
-        if (clk_cnt >= 32d"200000") then
+        if (clk_cnt >= 32d"200000000") then
           crc_check <= '1';
           clk_cnt <= 32d"0";
         else
