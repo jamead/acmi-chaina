@@ -8,7 +8,7 @@ library UNISIM;
 use UNISIM.VComponents.all;
 
 library work;
-use work.besocm_package.ALL;
+use work.acmi_package.ALL;
 
 
 entity find_beam_oow is

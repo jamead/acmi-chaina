@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 use ieee.std_logic_unsigned.all;
 
 library work;
-use work.besocm_package.ALL;
+use work.acmi_package.ALL;
 
 library UNISIM;
 use UNISIM.VComponents.all;

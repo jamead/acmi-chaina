@@ -24,8 +24,8 @@ end pwronreset;
 
 architecture rtl of pwronreset is
 
-constant RESET_TIME_SIM     : std_logic_vector(31 downto 0) := 32d"500";
-constant RESET_TIME_SYNTH   : std_logic_vector(31 downto 0) := 32d"50000000";
+constant RESET_TIME_SIM     : std_logic_vector(31 downto 0) := 32d"2500";
+constant RESET_TIME_SYNTH   : std_logic_vector(31 downto 0) := 32d"100_000_000";
 
 signal reset_cntr           : std_logic_vector(31 downto 0) := 32d"0";
 signal reset_time           : std_logic_vector(31 downto 0);

@@ -28,7 +28,7 @@ proc setSources {} {
   lappend Sources {"../hdl/gen_test_pulses.vhd" "VHDL 2008"}  
   lappend Sources {"../hdl/gen_timestamp.vhd" "VHDL 2008"}  
   lappend Sources {"../hdl/gen_timing_events.vhd" "VHDL 2008"}     
-  #lappend Sources {"../hdl/gen_trig_pulse.vhd" "VHDL 2008"}   
+  lappend Sources {"../hdl/gen_trig_pulse.vhd" "VHDL 2008"}   
   lappend Sources {"../hdl/gen_window.vhd" "VHDL 2008"}   
   lappend Sources {"../hdl/beam_detect_window.vhd" "VHDL 2008"}  
   lappend Sources {"../hdl/pulse_gen.vhd" "VHDL 2008"}   
@@ -44,14 +44,7 @@ proc setSources {} {
   lappend Sources {"../hdl/gen_gate.vhd" "VHDL 2008"} 
   
   lappend Sources {"../hdl/accumulator.vhd" "VHDL 2008"}  
-  
-
-  lappend Sources {"../hdl/rx_backend_data.vhd" "VHDL 2008"} 
-  lappend Sources {"../hdl/tx_backend_data.vhd" "VHDL 2008"}  
-  lappend Sources {"../hdl/find_boow_pulse.vhd" "VHDL 2008"}   
-  lappend Sources {"../hdl/beamoow_fifodata.vhd" "VHDL 2008"}   
-  lappend Sources {"../hdl/faults_tp.vhd" "VHDL 2008"} 
-  
+   
   lappend Sources {"../hdl/eeprom_interface.vhd" "VHDL 2008"} 
   lappend Sources {"../hdl/eeprom_spi.vhd" "VHDL 2008"} 
   lappend Sources {"../hdl/crc_compute.vhd" "VHDL 2008"}     
@@ -62,6 +55,10 @@ proc setSources {} {
   lappend Sources {"../hdl/ltc2107_spi.vhd" "VHDL 2008"}  
   
   lappend Sources {"../hdl/tx_pzed_data.vhd" "VHDL 2008"} 
+  lappend Sources {"../hdl/find_boow_pulse.vhd" "VHDL 2008"}   
+  lappend Sources {"../hdl/beamoow_fifodata.vhd" "VHDL 2008"}   
+  lappend Sources {"../hdl/faults_tp.vhd" "VHDL 2008"} 
+  
   lappend Sources {"../hdl/pzed_spi.vhd" "VHDL 2008"}    
    
   lappend Sources {"../hdl/stretch.vhd" "VHDL 2008"}  
@@ -100,7 +97,7 @@ proc doOnCreate {} {
   source ${TclPath}/boow_shift_ram.tcl
   source ${TclPath}/accum_dpram.tcl
   source ${TclPath}/beamoow_fifo.tcl 
-
+  source ${TclPath}/adc_fifo.tcl 
 
 
   addSources "Sources" 

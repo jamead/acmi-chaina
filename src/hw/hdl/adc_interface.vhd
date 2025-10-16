@@ -27,7 +27,7 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
  
 library work;
-use work.besocm_package.ALL;
+use work.acmi_package.ALL;
 
 
 
@@ -36,7 +36,8 @@ generic (
     SIM_MODE            : integer := 0
   );
   port (
-   reset  	   : in  std_logic;                     
+   reset  	   : in  std_logic; 
+   trig        : in std_logic;                    
    sclk        : out std_logic;                   
    din 	       : out std_logic;
    dout        : in  std_logic;
@@ -101,6 +102,7 @@ read_adc: entity work.read_ltc2107
     adc_clk_p => adc_clk_p,
     adc_clk_n => adc_clk_n,
     reset => reset,
+    trig => trig,
     adc_data_p => adc_data_p,
     adc_data_n => adc_data_n,
     adc_of_p => adc_of_p,

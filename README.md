@@ -1,6 +1,6 @@
 ACMI Frontend Platform - Chain A 
 
-Gateware for ACMI Frontend.  Uses custom Artix board as the hardware platform.   Communicates with withe ACMI backend hardware via fiber.  Responsible for all ACMI related safety tasks 
+Gateware for ACMI Frontend.  Uses custom Artix/PicoZed board as the hardware platform.    Responsible for all ACMI related safety tasks 
 
 Uses the DESY FWK FPGA Firmware Framework https://fpgafw.pages.desy.de/docs-pub/fwk/index.html
 

@@ -8,7 +8,7 @@ library UNISIM;
 use UNISIM.VComponents.all;
 
 library work;
-use work.besocm_package.ALL;
+use work.acmi_package.ALL;
 
 
 entity calc_beam_stats is
@@ -18,10 +18,8 @@ entity calc_beam_stats is
    adc_data         : in signed(15 downto 0);
    adc_data_dly     : in signed(15 downto 0);
    gate_start       : in std_logic_vector(31 downto 0);
-   threshold        : in signed(15 downto 0);
    adc_samplenum    : in std_logic_vector(31 downto 0);
-   pulse_stats      : out pulse_stats_type;
-   gate             : out std_logic
+   pulse_stats      : out pulse_stats_type
   );    
 end calc_beam_stats;
 
@@ -45,14 +43,14 @@ architecture behv of calc_beam_stats is
 
   attribute mark_debug                 : string;
 
-  attribute mark_debug of peak: signal is "true";   
-  attribute mark_debug of baseline: signal is "true";
-  attribute mark_debug of baseline_val: signal is "true";
-  attribute mark_debug of integral: signal is "true";
-  attribute mark_debug of integral_val: signal is "true";
-  attribute mark_debug of gate_start: signal is "true";
-  attribute mark_debug of baseline_gate: signal is "true";
-  attribute mark_debug of integral_gate: signal is "true";
+--  attribute mark_debug of peak: signal is "true";   
+--  attribute mark_debug of baseline: signal is "true";
+--  attribute mark_debug of baseline_val: signal is "true";
+--  attribute mark_debug of integral: signal is "true";
+--  attribute mark_debug of integral_val: signal is "true";
+--  attribute mark_debug of gate_start: signal is "true";
+--  attribute mark_debug of baseline_gate: signal is "true";
+--  attribute mark_debug of integral_gate: signal is "true";
 
   
   
@@ -65,7 +63,7 @@ pulse_stats.baseline <= std_logic_vector(baseline);
 pulse_stats.integral <= std_logic_vector(integral);
 pulse_stats.peak <= std_logic_vector(peak);
 pulse_stats.peak_index <= peak_sampnum;
-pulse_stats.threshold <= std_logic_vector(threshold);
+pulse_stats.threshold <= (others => '0');
 pulse_stats.fwhm <= std_logic_vector(fwhm);
 pulse_stats.peak_found <= '1';
 
@@ -138,3 +136,4 @@ pulse_fwhm: entity work.calc_fwhm
 
 
 end behv;
+

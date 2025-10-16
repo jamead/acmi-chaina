@@ -12,7 +12,7 @@ use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
   
 library work;
-use work.besocm_package.ALL;
+use work.acmi_package.ALL;
 
   
 entity faults is
@@ -150,7 +150,8 @@ begin
       if (prev_beam_cycle_window = '1' and beam_cycle_window = '0') then
         
         -- beam accum limit check
-        if (accum > params.beamaccum_limit_calc) then
+        --if (accum > params.beamaccum_limit_calc) then
+        if (accum > params.beamaccum_limit_hr) then 
           fault_bunch_limit <= '1';
         else
           fault_bunch_limit <= '0';

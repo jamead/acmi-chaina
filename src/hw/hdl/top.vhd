@@ -28,7 +28,7 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
  
 library work;
-use work.besocm_package.ALL;
+use work.acmi_package.ALL;
 
 entity top is
 generic(
@@ -69,8 +69,9 @@ generic(
     pzed_spi_dout           : in std_logic; 
     pzed_spi_cs             : in std_logic;   
     
-    --test pulse signals    
-    tp_pulse                : out std_logic_vector(7 downto 0);
+    --test pulse signals       
+    tp_pos_pulse            : out std_logic_vector(4 downto 0);
+    tp_neg_pulse            : out std_logic_vector(4 downto 0);
 
     --test pulse DAC
     dac_tp_data             : out std_logic_vector(13 downto 0);
@@ -145,13 +146,14 @@ architecture behv of top is
   signal startup_cnt        : std_logic_vector(31 downto 0);
   
   signal pulse_stats        : pulse_stats_array;
-  signal pzed_params        : pzed_parameters_type;
+  signal cntrl_params       : cntrl_parameters_type;
   signal eeprom_params      : eeprom_parameters_type;
   signal eeprom_data        : eeprom_data_type;
   signal eeprom_rdy         : std_logic;
   signal trig               : std_logic;
   signal ext_trig           : std_logic;
   signal trig_stretch       : std_logic;
+  signal fp_trig_dly_out    : std_logic;
   
   signal beam_pulse_detect  : std_logic;
   signal trig_out_delay     : std_logic_vector(31 downto 0);
@@ -176,7 +178,6 @@ architecture behv of top is
    attribute mark_debug                 : string;
    attribute mark_debug of adc_data: signal is "true";        
    attribute mark_debug of soft_trig: signal is "true"; 
-   attribute mark_debug of tp_pulse: signal is "true";
    attribute mark_debug of fiber_trig_in: signal is "true";
    attribute mark_debug of ext_trig: signal is "true";
    attribute mark_debug of trig: signal is "true"; 
@@ -198,13 +199,13 @@ begin
 
 
 dbg(0) <= adc_clk;
-dbg(1) <= tp_pulse(0); --watchdog_clock; --'0';
-dbg(2) <= tp_pulse(1); --fault_no_clock; --'0';
-dbg(3) <= tp_pulse(2); --fault_no_pulse; --'0';
-dbg(4) <= tp_pulse(3); --fault_bad_power; --'0';
-dbg(5) <= tp_pulse(4); --beam_pulse_detect; --'0';
-dbg(6) <= tp_pulse(5); --soft_trig; --'0'; --pzed_spi_sclk;
-dbg(7) <= tp_pulse(6); --'0'; --pzed_spi_din;
+dbg(1) <= '0'; --tp_pos_pulse(0); --watchdog_clock; --'0';
+dbg(2) <= '0'; --tp_p_pos(1); --fault_no_clock; --'0';
+dbg(3) <= '0'; --tp_pulse_pos(2); --fault_no_pulse; --'0';
+dbg(4) <= '0'; --tp_pulse_pos(3); --fault_bad_power; --'0';
+dbg(5) <= '0'; --tp_pulse_neg(0); --beam_pulse_detect; --'0';
+dbg(6) <= '0'; --tp_pulse_neg(1); --soft_trig; --'0'; --pzed_spi_sclk;
+dbg(7) <= '0'; --tp_pulse_neg(2); --'0'; --pzed_spi_din;
 dbg(8) <= fiber_trig_in; --ext_trig; --'0'; --pzed_spi_dout;
 dbg(9) <= trig; --'0'; --pzed_spi_cs;
 
@@ -218,7 +219,7 @@ dbg_leds(3) <= spi_xfer_stretch; --'0'; --'1';
 
 
 
---fiber_trig_fp <= beam_detect_window; 
+fiber_trig_fp <= fp_trig_dly_out; 
 
 --inverter on LED drivers
 fiber_trig_led <= not trig_stretch; 
@@ -254,52 +255,52 @@ debounce_acis_reset: entity work.debounce
   port map (
     clk => adc_clk,
     reset => reset,
-    button => acis_reset,
-    result => acis_reset_debounced
+    switch => acis_reset,
+    clean => acis_reset_debounced
 );
   
 debounce_acis_force_trip: entity work.debounce
   port map (
     clk => adc_clk,
     reset => reset,
-    button => acis_force_trip,
-    result => acis_force_trip_debounced
+    switch => acis_force_trip,
+    clean => acis_force_trip_debounced
 );  
   
 debounce_acis_keylock: entity work.debounce
   port map (
     clk => adc_clk,
     reset => reset,
-    button => acis_keylock,
-    result => acis_keylock_debounced
+    switch => acis_keylock,
+    clean => acis_keylock_debounced
 );    
   
+
 
 timing: entity work.gen_timing_events
   port map(
     clk => adc_clk,
     reset => reset,
     eeprom_rdy => eeprom_rdy,
-    soft_trig => soft_trig,
-    fiber_trig_in => fiber_trig_in,
-    eeprom_params => eeprom_params, --pzed_params,
-    pzed_params => pzed_params,
+    trig=> trig, 
+    eeprom_params => eeprom_params, 
+    cntrl_params => cntrl_params,
     acis_keylock => acis_keylock_debounced,    
-    trig_out => trig,
-    accum_update => accum_update,
     beam_detect_window => beam_detect_window,
     beam_cycle_window => beam_cycle_window,
     adc_samplenum => adc_samplenum,
-    tp_pulse => tp_pulse,
-    tp_gates => tp_gates,
-    fiber_trig_fp => fiber_trig_fp,
+    tp_pos_pulse => tp_pos_pulse,
+    tp_neg_pulse => tp_neg_pulse,
     timestamp => timestamp,
     watchdog_clock => watchdog_clock,
     watchdog_pulse => watchdog_pulse,
     startup_cnt => startup_cnt, 
-    fault_startup => fault_startup   
+    fault_startup => fault_startup,
+    fp_trig_dly_out => fp_trig_dly_out   
     
  );
+
+
 
 
 
@@ -339,6 +340,7 @@ adc : entity work.adc_interface
   )
   port map (
     reset => reset,
+    trig => trig,
     sclk => adc_spi_sck,                    
     din => adc_spi_sdi, 
     dout => adc_spi_sdo, 
@@ -376,11 +378,10 @@ calc_q: entity work.calc_charge
 boxcar: entity work.accumulator
   port map(
     clk => adc_clk, 
-    rst => pzed_params.accum_reset, 
+    rst => cntrl_params.accum_reset, 
     faultn => acis_faultn,
     accum_len => eeprom_params.accum_length(12 downto 0),
     beam_detect_window => beam_detect_window, 
-    accum_update => accum_update,
     q_min => eeprom_params.accum_q_min,
     sample => pulse_stats(0).integral,
     charge_oow => charge_oow,
@@ -400,8 +401,8 @@ spi_comm: entity work.pzed_spi
     dout => pzed_spi_din, 
     csn => pzed_spi_cs,
     spi_xfer => spi_xfer,
-    soft_trig => soft_trig,
-    params => pzed_params              
+    soft_trig => trig,
+    params => cntrl_params              
  );    
 
 
@@ -444,7 +445,7 @@ eeprom: entity work.eeprom_interface
   port map(
     clk => adc_clk,                   
     reset => reset,  
-    pzed_params => pzed_params,                            
+    cntrl_params => cntrl_params,                            
     eeprom_params => eeprom_params,
     acis_keylock => acis_keylock_debounced,
     sclk => eeprom_sck,                    
