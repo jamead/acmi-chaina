@@ -181,16 +181,19 @@ architecture behv of top is
    attribute mark_debug of fiber_trig_in: signal is "true";
    attribute mark_debug of ext_trig: signal is "true";
    attribute mark_debug of trig: signal is "true"; 
-   attribute mark_debug of fault_bad_power: signal is "true";
-   attribute mark_debug of fault_no_clock: signal is "true";  
-   attribute mark_debug of fault_no_pulse: signal is "true";  
-   attribute mark_debug of fault_no_trigger: signal is "true";   
+   attribute mark_debug of waveform_data: signal is "true";
+   attribute mark_debug of waveform_enb: signal is "true";
    
-   attribute mark_debug of acis_faultn: signal is "true";   
-   attribute mark_debug of acis_fault_rdbk: signal is "true";   
-   attribute mark_debug of acis_reset: signal is "true";   
-   attribute mark_debug of acis_force_trip: signal is "true";   
-   attribute mark_debug of acis_keylock: signal is "true";          
+--   attribute mark_debug of fault_bad_power: signal is "true";
+--   attribute mark_debug of fault_no_clock: signal is "true";  
+--   attribute mark_debug of fault_no_pulse: signal is "true";  
+--   attribute mark_debug of fault_no_trigger: signal is "true";   
+   
+--   attribute mark_debug of acis_faultn: signal is "true";   
+--   attribute mark_debug of acis_fault_rdbk: signal is "true";   
+--   attribute mark_debug of acis_reset: signal is "true";   
+--   attribute mark_debug of acis_force_trip: signal is "true";   
+--   attribute mark_debug of acis_keylock: signal is "true";          
 
 
 
@@ -219,11 +222,27 @@ dbg_leds(3) <= spi_xfer_stretch; --'0'; --'1';
 
 
 
+
+
+-- temp trigger from J8 SMA input
+gen_trig: entity work.gen_trig_pulse
+  port map(
+   clk => adc_clk,        
+   trig => fiber_trig_in,                  
+   pulse => ext_trig              
+  );    
+
+trig <= ext_trig or soft_trig; 
+
+
+
+
 fiber_trig_fp <= fp_trig_dly_out; 
 
 --inverter on LED drivers
 fiber_trig_led <= not trig_stretch; 
 keylock_detect_led <= not acis_keylock_debounced;
+
 
 
 dac_tp_clk <= adc_clk;
@@ -401,7 +420,7 @@ spi_comm: entity work.pzed_spi
     dout => pzed_spi_din, 
     csn => pzed_spi_cs,
     spi_xfer => spi_xfer,
-    soft_trig => trig,
+    soft_trig => soft_trig,
     params => cntrl_params              
  );    
 

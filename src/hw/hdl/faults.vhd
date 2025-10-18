@@ -64,18 +64,18 @@ architecture behv of faults is
     signal beamoow_peak_found_lat    : std_logic;
 
 
-    attribute mark_debug                  : string;
-    attribute mark_debug of fault_beam_high : signal is "true";
-    attribute mark_debug of fault_bunch_limit : signal is "true";
-    attribute mark_debug of fault_bad_limit: signal is "true";
-    attribute mark_debug of fault_tp1 : signal is "true";   
-    attribute mark_debug of fault_tp2 : signal is "true";
-    attribute mark_debug of fault_tp3 : signal is "true";
-    attribute mark_debug of fault_tp4 : signal is "true";
-    attribute mark_debug of faults_rdbk: signal is "true";
-    attribute mark_debug of beamoow_peak_found_lat: signal is "true";
-    attribute mark_debug of adc_sat_lat: signal is "true";
-    attribute mark_debug of fault_beam_out_window: signal is "true";
+--    attribute mark_debug                  : string;
+--    attribute mark_debug of fault_beam_high : signal is "true";
+--    attribute mark_debug of fault_bunch_limit : signal is "true";
+--    attribute mark_debug of fault_bad_limit: signal is "true";
+--    attribute mark_debug of fault_tp1 : signal is "true";   
+--    attribute mark_debug of fault_tp2 : signal is "true";
+--    attribute mark_debug of fault_tp3 : signal is "true";
+--    attribute mark_debug of fault_tp4 : signal is "true";
+--    attribute mark_debug of faults_rdbk: signal is "true";
+--    attribute mark_debug of beamoow_peak_found_lat: signal is "true";
+--    attribute mark_debug of adc_sat_lat: signal is "true";
+--    attribute mark_debug of fault_beam_out_window: signal is "true";
 
 
 begin  

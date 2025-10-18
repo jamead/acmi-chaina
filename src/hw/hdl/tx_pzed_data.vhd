@@ -79,15 +79,15 @@ END component;
  
  
   --debug signals (connect to ila)
-  attribute mark_debug                 : string;
-  attribute mark_debug of pzed_enb: signal is "true";
-  attribute mark_debug of pzed_sel: signal is "true";
-  attribute mark_debug of pzed_data: signal is "true";
-  attribute mark_debug of words_written: signal is "true";
-  attribute mark_debug of words_read: signal is "true";
-  attribute mark_debug of adcfifo_rden: signal is "true";
-  attribute mark_debug of state: signal is "true";
-  attribute mark_debug of startup_cnt: signal is "true";
+--  attribute mark_debug                 : string;
+--  attribute mark_debug of pzed_enb: signal is "true";
+--  attribute mark_debug of pzed_sel: signal is "true";
+--  attribute mark_debug of pzed_data: signal is "true";
+--  attribute mark_debug of words_written: signal is "true";
+--  attribute mark_debug of words_read: signal is "true";
+--  attribute mark_debug of adcfifo_rden: signal is "true";
+--  attribute mark_debug of state: signal is "true";
+--  attribute mark_debug of startup_cnt: signal is "true";
 
   
 begin  

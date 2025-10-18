@@ -40,16 +40,16 @@ architecture behv of pzed_spi is
    signal sync_csn           : std_logic_vector(2 downto 0);
   
   
-   attribute mark_debug                  : string;
-   attribute mark_debug of spi_data      : signal is "true";
-   attribute mark_debug of spi_addr      : signal is "true";
-   attribute mark_debug of spi_rw        : signal is "true";  
-   attribute mark_debug of spi_shiftdata : signal is "true";
-   attribute mark_debug of bitnum        : signal is "true";
-   attribute mark_debug of spi_xfer      : signal is "true";
-   attribute mark_debug of sync_csn      : signal is "true";
-   attribute mark_debug of params        : signal is "true";
-   attribute mark_debug of soft_trig     : signal is "true";
+--   attribute mark_debug                  : string;
+--   attribute mark_debug of spi_data      : signal is "true";
+--   attribute mark_debug of spi_addr      : signal is "true";
+--   attribute mark_debug of spi_rw        : signal is "true";  
+--   attribute mark_debug of spi_shiftdata : signal is "true";
+--   attribute mark_debug of bitnum        : signal is "true";
+--   attribute mark_debug of spi_xfer      : signal is "true";
+--   attribute mark_debug of sync_csn      : signal is "true";
+--   attribute mark_debug of params        : signal is "true";
+--   attribute mark_debug of soft_trig     : signal is "true";
   
   
 begin  

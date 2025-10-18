@@ -13,3 +13,4 @@ set_clock_groups -name adcclk_spiclk -asynchronous -group [get_clocks adc_clk] -
 set_property BITSTREAM.CONFIG.SPI_BUSWIDTH 4 [current_design]
 
 
+
