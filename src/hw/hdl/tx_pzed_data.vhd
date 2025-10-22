@@ -75,12 +75,13 @@ END component;
   signal beamoow_fiforst         : std_logic;
   signal beamoow_stats           : pulse_stats_type;
   signal faults_rdbk_tp          : std_logic_vector(31 downto 0);
+  signal fpgaver                 : std_logic_vector(15 downto 0);
 
  
  
   --debug signals (connect to ila)
---  attribute mark_debug                 : string;
---  attribute mark_debug of pzed_enb: signal is "true";
+  attribute mark_debug                 : string;
+  attribute mark_debug of fpgaver: signal is "true";
 --  attribute mark_debug of pzed_sel: signal is "true";
 --  attribute mark_debug of pzed_data: signal is "true";
 --  attribute mark_debug of words_written: signal is "true";
@@ -91,6 +92,9 @@ END component;
 
   
 begin  
+
+
+fpgaver <= std_logic_vector(to_unsigned(FPGA_VERSION,16)); 
 
 charge_oow <= beamoow_stats.integral;
 
@@ -165,7 +169,7 @@ process (clk)
              when 0   =>  pzed_data   <= x"0000";
              when 1   =>  pzed_data   <= x"8000";
              when 2   =>  pzed_data   <= x"0000";
-             when 3   =>  pzed_data   <= std_logic_vector(to_unsigned(FPGA_VERSION,16)); 
+             when 3   =>  pzed_data   <= fpgaver; --std_logic_vector(to_unsigned(FPGA_VERSION,16)); 
              -- beam pulse stats
              when 4   =>  pzed_data   <= (others => pulse_stats(0).baseline(15));
              when 5   =>  pzed_data   <= pulse_stats(0).baseline(15 downto 0);

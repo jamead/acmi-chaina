@@ -32,7 +32,7 @@ use work.acmi_package.ALL;
 
 entity top is
 generic(
-    FPGA_VERSION			: integer := 1;
+    FPGA_VERSION			: integer := 7;
     SIM_MODE				: integer := 0
     );
   port(
@@ -216,8 +216,8 @@ dbg(9) <= trig; --'0'; --pzed_spi_cs;
 --pzed_spi_din <= led_i;
 
 dbg_leds(0) <= trig_stretch; --'0';
-dbg_leds(1) <= reset; --'0'; --not led_i;
-dbg_leds(2) <= '0';
+dbg_leds(1) <= '1'; --reset; --'0'; --not led_i;
+dbg_leds(2) <= '1';
 dbg_leds(3) <= spi_xfer_stretch; --'0'; --'1';
 
 
