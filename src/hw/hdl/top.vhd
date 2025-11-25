@@ -49,7 +49,7 @@ generic(
     adc_of_n                : in std_logic;
     
     -- trigger input from fiber
-    fiber_trig_in           : in std_logic;
+    --fiber_trig_in           : in std_logic;
     fiber_trig_led          : out std_logic;
     fiber_trig_fp           : out std_logic;
     
@@ -65,9 +65,13 @@ generic(
     
     -- picozed spi
     pzed_spi_sclk           : in std_logic;                    
-    pzed_spi_din            : out std_logic; 
+    --pzed_spi_din            : out std_logic; 
     pzed_spi_dout           : in std_logic; 
     pzed_spi_cs             : in std_logic;   
+    
+    -- picozed trigger from EVR
+    pzed_trig               : in std_logic;   -- was pzed_spi_din
+    trig_to_watchdog        : out std_logic;  -- was fiber_trig_in
     
     --test pulse signals       
     tp_pos_pulse            : out std_logic_vector(4 downto 0);
@@ -152,6 +156,7 @@ architecture behv of top is
   signal eeprom_rdy         : std_logic;
   signal trig               : std_logic;
   signal ext_trig           : std_logic;
+  signal evr_trig           : std_logic;
   signal trig_stretch       : std_logic;
   signal fp_trig_dly_out    : std_logic;
   
@@ -172,17 +177,23 @@ architecture behv of top is
   signal acis_reset_debounced  : std_logic;
   signal acis_force_trip_debounced : std_logic;
   signal acis_keylock_debounced : std_logic;
+  
 
  
    --debug signals (connect to ila)
    attribute mark_debug                 : string;
    attribute mark_debug of adc_data: signal is "true";        
    attribute mark_debug of soft_trig: signal is "true"; 
-   attribute mark_debug of fiber_trig_in: signal is "true";
+   attribute mark_debug of pzed_trig: signal is "true";
+   attribute mark_debug of trig_to_watchdog: signal is "true";
    attribute mark_debug of ext_trig: signal is "true";
+   attribute mark_debug of evr_trig: signal is "true";   
    attribute mark_debug of trig: signal is "true"; 
    attribute mark_debug of waveform_data: signal is "true";
    attribute mark_debug of waveform_enb: signal is "true";
+   attribute mark_debug of beam_detect_window: signal is "true";
+   attribute mark_debug of beam_cycle_window: signal is "true";
+   
    
 --   attribute mark_debug of fault_bad_power: signal is "true";
 --   attribute mark_debug of fault_no_clock: signal is "true";  
@@ -209,7 +220,7 @@ dbg(4) <= '0'; --tp_pulse_pos(3); --fault_bad_power; --'0';
 dbg(5) <= '0'; --tp_pulse_neg(0); --beam_pulse_detect; --'0';
 dbg(6) <= '0'; --tp_pulse_neg(1); --soft_trig; --'0'; --pzed_spi_sclk;
 dbg(7) <= '0'; --tp_pulse_neg(2); --'0'; --pzed_spi_din;
-dbg(8) <= fiber_trig_in; --ext_trig; --'0'; --pzed_spi_dout;
+dbg(8) <= '0'; --ext_trig; --'0'; --pzed_spi_dout;
 dbg(9) <= trig; --'0'; --pzed_spi_cs;
 
 
@@ -223,18 +234,19 @@ dbg_leds(3) <= spi_xfer_stretch; --'0'; --'1';
 
 
 
-
--- temp trigger from J8 SMA input
-gen_trig: entity work.gen_trig_pulse
+-- temp trigger from pzed (from EVR)
+gen_trig_evr: entity work.gen_trig_pulse
   port map(
    clk => adc_clk,        
-   trig => fiber_trig_in,                  
-   pulse => ext_trig              
-  );    
-
-trig <= ext_trig or soft_trig; 
+   trig => pzed_trig,                  
+   pulse => evr_trig              
+  );   
 
 
+trig <= soft_trig or evr_trig; 
+
+-- send trigger pulse to watchdog timer, creates no_trigger fault if no trigger received.
+trig_to_watchdog <= pzed_trig;
 
 
 fiber_trig_fp <= fp_trig_dly_out; 
@@ -417,7 +429,7 @@ spi_comm: entity work.pzed_spi
     acis_keylock => acis_keylock_debounced,             
     sclk => pzed_spi_sclk,                    
     din => pzed_spi_dout, 
-    dout => pzed_spi_din, 
+    dout => open, --pzed_spi_din, 
     csn => pzed_spi_cs,
     spi_xfer => spi_xfer,
     soft_trig => soft_trig,

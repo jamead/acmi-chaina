@@ -22,7 +22,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 set list_projs [get_projects -quiet]
 if { $list_projs eq "" } {
-  create_project vivado vivado -part xc7a200tfbg484-2
+  create_project zubpm_hw zubpm_hw -part xc7a200tfbg484-2
   set_property target_language VHDL [current_project]
   set_property simulator_language Mixed [current_project]
 }
@@ -63,7 +63,7 @@ if { $bCheckIPsPassed != 1 } {
 set adc_shift_ram [create_ip -name c_shift_ram -vendor xilinx.com -library ip -version 12.0 -module_name adc_shift_ram]
 
 # User Parameters
-set_property CONFIG.Depth {40} [get_ips adc_shift_ram]
+set_property CONFIG.Depth {60} [get_ips adc_shift_ram]
 
 # Runtime Parameters
 set_property -dict { 

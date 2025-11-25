@@ -31,6 +31,17 @@ architecture behv of calc_fwhm is
   signal adc_data_bs_nzs  : signed(16 downto 0);
   signal fwhm_level       : signed(15 downto 0);   
  
+   
+  attribute mark_debug                  : string;
+  attribute mark_debug of trig: signal is "true";
+  attribute mark_debug of start_calc : signal is "true";
+  attribute mark_debug of baseline: signal is "true";
+  attribute mark_debug of peak: signal is "true";  
+  attribute mark_debug of adc_data: signal is "true";
+  attribute mark_debug of adc_data_bs: signal is "true";
+  attribute mark_debug of fwhm: signal is "true"; 
+  attribute mark_debug of fwhm_val: signal is "true";
+  attribute mark_debug of state: signal is "true";
   
   
 begin  

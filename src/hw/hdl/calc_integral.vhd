@@ -28,7 +28,7 @@ architecture behv of calc_integral is
   signal state         : state_type := idle;
 
 
-  constant ACCUMLEN      : INTEGER := 39;
+  constant ACCUMLEN      : INTEGER := 59;
   signal accum_cnt       : std_logic_vector(5 downto 0) := 6d"0";
   signal accum           : signed(31 downto 0) := 32d"0";
   signal accum_lat       : signed(31 downto 0) := 32d"0";  

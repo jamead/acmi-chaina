@@ -61,9 +61,9 @@ architecture behv of eeprom_interface is
   
   
   
-  attribute mark_debug                  : string;
+  --attribute mark_debug                  : string;
   --attribute mark_debug of eeprom_data : signal is "true";
-  attribute mark_debug of eeprom_params: signal is "true";
+  --attribute mark_debug of eeprom_params: signal is "true";
 --  attribute mark_debug of trig : signal is "true";  
 --  attribute mark_debug of bytes_read : signal is "true"; 
 --  attribute mark_debug of state : signal is "true";

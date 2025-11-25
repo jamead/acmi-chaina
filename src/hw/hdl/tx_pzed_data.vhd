@@ -80,8 +80,8 @@ END component;
  
  
   --debug signals (connect to ila)
-  attribute mark_debug                 : string;
-  attribute mark_debug of fpgaver: signal is "true";
+  --attribute mark_debug                 : string;
+  --attribute mark_debug of fpgaver: signal is "true";
 --  attribute mark_debug of pzed_sel: signal is "true";
 --  attribute mark_debug of pzed_data: signal is "true";
 --  attribute mark_debug of words_written: signal is "true";

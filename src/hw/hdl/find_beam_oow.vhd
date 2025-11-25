@@ -98,7 +98,7 @@ gen_window_beam: entity work.gen_gate
    trig => trig, 
    adc_samplenum => adc_samplenum,  
    gate_start => params.beam_adc_delay, 
-   width => 32d"72",
+   width => 32d"92",
    gate => gate(0)                           
   );    
 
@@ -109,7 +109,7 @@ gen_window_tp1: entity work.gen_gate
    trig => trig, 
    adc_samplenum => adc_samplenum,  
    gate_start => params.tp1_adc_delay, 
-   width => 32d"72",
+   width => 32d"92",
    gate => gate(1)                           
   );    
 
@@ -120,7 +120,7 @@ gen_window_tp2: entity work.gen_gate
    trig => trig, 
    adc_samplenum => adc_samplenum,  
    gate_start => params.tp2_adc_delay, 
-   width => 32d"72",
+   width => 32d"92",
    gate => gate(2)                           
   );    
 
@@ -130,7 +130,7 @@ gen_window_tp3: entity work.gen_gate
    trig => trig, 
    adc_samplenum => adc_samplenum,  
    gate_start => params.tp3_adc_delay, 
-   width => 32d"72",
+   width => 32d"92",
    gate => gate(3)                           
   );    
 

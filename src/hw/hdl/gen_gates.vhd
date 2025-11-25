@@ -24,7 +24,7 @@ end gen_gates;
 architecture behv of gen_gates is
   
   constant BASELINE_LEN     : std_logic_vector(7 downto 0) := 8d"32";
-  constant INTEGRAL_LEN     : std_logic_vector(7 downto 0) := 8d"40";
+  constant INTEGRAL_LEN     : std_logic_vector(7 downto 0) := 8d"60";
     
   type     state_type is (IDLE, TRIGGERED, BASELINE_ACTIVE, INTEGRAL_ACTIVE); 
   signal   state            : state_type  := idle;

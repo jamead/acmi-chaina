@@ -81,8 +81,11 @@ set_property PULLUP true [get_ports adc_spi_sdo]
 
 
 # trigger input and outputs
-set_property PACKAGE_PIN N17 [get_ports fiber_trig_in]
-set_property IOSTANDARD LVCMOS33 [get_ports fiber_trig_in]
+set_property PACKAGE_PIN N17 [get_ports trig_to_watchdog]
+set_property IOSTANDARD LVCMOS33 [get_ports trig_to_watchdog]
+set_property DRIVE 12 [get_ports trig_to_watchdog]
+set_property SLEW FAST [get_ports trig_to_watchdog]
+
 
 set_property PACKAGE_PIN P15 [get_ports fiber_trig_led]
 set_property IOSTANDARD LVCMOS33 [get_ports fiber_trig_led]
@@ -195,16 +198,15 @@ set_property SLEW FAST [get_ports {tp_pos_pulse[0]}]
 
 
 
+# picozed trigger   (was pzed_spi_dout)
+set_property PACKAGE_PIN E22 [get_ports pzed_trig]
+set_property IOSTANDARD LVCMOS33 [get_ports pzed_trig]
+
+
 
 #picozed to artix spi
 set_property PACKAGE_PIN D21 [get_ports pzed_spi_dout]
 set_property IOSTANDARD LVCMOS33 [get_ports pzed_spi_dout]
-
-
-set_property PACKAGE_PIN E22 [get_ports pzed_spi_din]
-set_property IOSTANDARD LVCMOS33 [get_ports pzed_spi_din]
-set_property DRIVE 12 [get_ports pzed_spi_din]
-set_property SLEW FAST [get_ports pzed_spi_din]
 
 set_property PACKAGE_PIN D17 [get_ports pzed_spi_sclk]
 set_property IOSTANDARD LVCMOS33 [get_ports pzed_spi_sclk]
